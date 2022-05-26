@@ -5,9 +5,9 @@ import Footer from "./Footer";
 
 function Layout(props) {
 	return (
-		<div className="flex-column">
+		<div className="">
 			<MainNavigation className={classes.main} />
-			<main>{props.children}</main>
+			<main style={{ minHeight: "90vh" }}>{props.children}</main>
 			<Footer />
 		</div>
 	);

@@ -5,8 +5,6 @@ function Footer() {
 		<footer
 			style={{
 				backgroundColor: "#000",
-				bottom: "-300px",
-				position: "absolute",
 				height: "300px",
 				width: "100%",
 			}}

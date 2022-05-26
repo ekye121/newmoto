@@ -31,3 +31,6 @@ yarn-error.log*
 
 #notes
 notes.js
+
+#data
+dummy_data.js

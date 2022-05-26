@@ -9,74 +9,6 @@ import {
 } from "../components/api/GetModelSpecs";
 import SearchedMoto from "../components/search/SearchedMoto";
 
-const test_data = {
-	articleCompleteInfo: {
-		articleID: 596204,
-		makeName: "Aprilia",
-		modelName: "Dorsoduro 1200",
-		categoryName: "Sport touring",
-		yearName: 2015,
-	},
-	articleImage: {
-		imageName: "Aprilia Dorsoduro 1200 2015.jpg",
-		link: "http://api-motorcycle.makingdatameaningful.com/files/Aprilia/2015/Dorsoduro 1200/Aprilia_2015_Dorsoduro 1200.jpg",
-	},
-	engineAndTransmission: {
-		displacementName: "1197.00 ccm (73.04 cubic inches)",
-		engineTypeName: "Longitudinal 90° V-twin",
-		engineDetailsName: "V2, four-stroke",
-		powerName: "130.00 HP (94.9  kW)) @ 8500 RPM",
-		torqueName: "115.00 Nm (11.7 kgf-m or 84.8 ft.lbs) @ 6500 RPM",
-		compressionName: "12.0:1",
-		boreXStrokeName: "106.0 x 67.8 mm (4.2 x 2.7 inches)",
-		valvesPerCylinderName: "4",
-		fuelSystemName: "Injection",
-		lubricationSystemName: "Wet sump",
-		coolingSystemName: "Liquid",
-		gearboxName: "6-speed",
-		transmissionTypeFinalDriveName: "Chain",
-		clutchName: "Multiplate wet clutch, hydraulically operated",
-		drivelineName: "Drive ratio: 16/40",
-		exhaustSystemName:
-			"100% stainless steel 2-in-1 exhaust system with dual catalytic converters and double oxygen sensor",
-	},
-	chassisSuspensionBrakesAndWheels: {
-		frameTypeName:
-			"Modular tubular steel frame fastened to aluminium side plates by high strength bolts. Removable steel rear subframe.",
-		frontBrakesName: "Double disc. Bremo. ABS.",
-		frontBrakesDiameterName: "320 mm (12.6 inches)",
-		frontSuspensionName:
-			"Sachs upside-down front fork with fully adjustable compression and rebound damping and spring preload. Wheel travel 167 mm. ",
-		frontTyreName: "120/70-ZR17 ",
-		frontWheelTravelName: "160 mm (6.3 inches)",
-		rakeName: "27.3°",
-		rearBrakesName: "Single disc. Bremo. ABS.",
-		rearBrakesDiameterName: "240 mm (9.4 inches)",
-		rearSuspensionName:
-			"Aluminium alloy swingarm Sachs hydraulic shock absorber with adjustable rebound and preload. ",
-		rearTyreName: "190/55-ZR17 ",
-		rearWheelTravelName: "155 mm (6.1 inches)",
-		trailName: "118 mm (4.6 inches)",
-	},
-	physicalMeasuresAndCapacities: {
-		dryWeightName: "212.0 kg (467.4 pounds)",
-		fuelCapacityName: "15.00 litres (3.96 gallons)",
-		overallHeightName: "1,205 mm (47.4 inches)",
-		overallLengthName: "2,248 mm (88.5 inches)",
-		overallWidthName: "925 mm (36.4 inches)",
-		powerWeightRatioName: "0.6132 HP/kg",
-		reserveFuelCapacityName: "2.50 litres (0.66 gallons)",
-		seatHeightName: "870 mm (34.3 inches) If adjustable, lowest setting.",
-	},
-	otherSpecifications: {
-		colorOptionsName: "White, red",
-		commentsName:
-			"Two channel Continental ABS with Aprilia Traction Control. Integrated engine management system. Triple map Ride by Wire throttle management: Sport (S), Touring (T), Rain (R). Sold in Australia.",
-		factoryWarrantyName: "2-year unlimited-mileage warranty",
-		starterName: "Electric",
-	},
-};
-
 function SearchPage() {
 	const motosContext = useContext(MotosContext);
 	const [makeText, setMakeText] = useState("");
@@ -92,6 +24,7 @@ function SearchPage() {
 	const [modelErrorMsg, setModelErrorMsg] = useState("");
 	const [loading, setLoading] = useState(true);
 	const [modelSpecsData, setModelSpecsData] = useState([]);
+	const [loadingMoto, setLoadingMoto] = useState(false);
 
 	useEffect(() => {
 		if (
@@ -120,25 +53,24 @@ function SearchPage() {
 	async function submitHandler(e) {
 		e.preventDefault();
 		setModelErrorMsg("");
+		setLoadingMoto(true);
 		const modelInArr = checkModelInDB();
 		if (modelInArr) {
-			console.log("model in arr");
 			let modelSpecsData;
 			// check db for specs
-			const modelSpecsDB = await getModelSpecsDB();
+			const modelSpecsDB = await getModelSpecsDB(makeText, modelText);
 			if (!modelSpecsDB) {
 				const modelSpecsAPI = await getModelSpecsAPI(makeText, modelText);
 				await saveModelSpecsDB(makeText, modelText, modelSpecsAPI);
 				modelSpecsData = modelSpecsAPI;
 			} else {
-				modelSpecsData = modelSpecsDB;
+				modelSpecsData = Object.entries(modelSpecsDB)[0][1];
 			}
 			setModelSpecsData(modelSpecsData);
-			// display data
-			console.log(`modelSpecsData ~~~>`, modelSpecsData);
 		} else {
 			setModelErrorMsg("Model not found. Select from list.");
 		}
+		setLoadingMoto(false);
 	}
 
 	function getModelsByMake(make) {
@@ -199,10 +131,16 @@ function SearchPage() {
 			setMakeText(e.target.text);
 			setMakeDropDownMenu(false);
 			getModelsByMake(e.target.text);
+			setTimeout(() => {
+				if (document.getElementById("modelDropDownMenu")) {
+					document.getElementById("modelDropDownMenu").childNodes[0].focus();
+				}
+			}, 0);
 		} else if (type === "model") {
 			setModelText(e.target.text);
 			setModelDropDownMenu(false);
 			setDisableSearchButton(false);
+			document.getElementById("buttonSearchMoto").focus();
 		}
 	}
 
@@ -231,6 +169,15 @@ function SearchPage() {
 			setMakeDropDownMenu(false);
 			setModelDropDownMenu(false);
 		}
+
+		if (e.target.id === "makeSearchInput") {
+			e.target.addEventListener("keydown", (e) => {
+				if (e.key === "ArrowDown") {
+					e.preventDefault();
+					document.getElementById("makeDropDownMenu").childNodes[0].focus();
+				}
+			});
+		}
 	});
 
 	return (
@@ -256,7 +203,9 @@ function SearchPage() {
 				loading={loading}
 			/>
 			<hr />
-			{modelSpecsData.length > 0 && <SearchedMoto data={modelSpecsData[0]} />}
+			{modelSpecsData.length > 0 && (
+				<SearchedMoto data={modelSpecsData[0]} loadingMoto={loadingMoto} />
+			)}
 		</div>
 	);
 }

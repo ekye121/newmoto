@@ -1,6 +1,6 @@
 import { Form, Dropdown } from "react-bootstrap";
 
-function FormGroup({ props, type }) {
+function SearchFormGroup({ props, type }) {
 	function uppercaseFirstLetter(str) {
 		return str.replace(str[0], str[0].toUpperCase());
 	}
@@ -9,9 +9,9 @@ function FormGroup({ props, type }) {
 
 	return (
 		<Form.Group>
-			<Form.Label>{typeStrFix}:</Form.Label>
 			<div className="d-flex justify-content-center">
 				<Form.Control
+					id={`${type}SearchInput`}
 					className="form-toggle"
 					value={props[`${type}Text`]}
 					onChange={props[`${type}InputOnChange`]}
@@ -22,6 +22,16 @@ function FormGroup({ props, type }) {
 							? props.disableModelDropDown
 							: props.disableMakeDropDown
 					}
+					style={{
+						borderRadius: "25px",
+						paddingRight: "35px",
+						paddingLeft: "25px",
+						marginRight: "-25px",
+						border: "0px transparent",
+						fontWeight: "bold",
+					}}
+					placeholder={`Search ${typeStrFix}...`}
+					autoComplete="off"
 				/>
 				<Dropdown align="end" show={props[`${type}DropDownMenu`]}>
 					<Dropdown.Toggle
@@ -34,8 +44,19 @@ function FormGroup({ props, type }) {
 								? props.disableModelDropDown
 								: props.disableMakeDropDown
 						}
+						style={{
+							position: "relative",
+							borderRadius: "25px",
+							border: "0px transparent",
+							background: "transparent",
+							color: "#212529",
+							left: "-10px",
+							top: "1px",
+							fontSize: "20px",
+						}}
 					/>
 					<Dropdown.Menu
+						id={`${type}DropDownMenu`}
 						variant="dark"
 						style={{
 							overflow: "scroll",
@@ -72,4 +93,4 @@ function FormGroup({ props, type }) {
 	);
 }
 
-export default FormGroup;
+export default SearchFormGroup;

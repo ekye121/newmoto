@@ -7,9 +7,9 @@ function HomePageMoto() {
 				src={harleyPic}
 				alt="harley-davidson"
 				style={{
-					// position: "absolute",
 					// top: "-165px",
-					// zIndex: "-1",
+					position: "absolute",
+					zIndex: "-1",
 					objectFit: "cover",
 					width: "100vw",
 					height: "100vh",

@@ -16,6 +16,27 @@ function Signup() {
 	const authContext = useContext(AuthContext);
 	const navigate = useNavigate();
 
+	function addUserToDB(user) {
+		const options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				email: user,
+			}),
+		};
+		const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/users/${user}/.json`;
+		fetch(url, options)
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(`data ~~~>`, data);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	}
+
 	async function submitHandler(e) {
 		e.preventDefault();
 
@@ -31,6 +52,7 @@ function Signup() {
 			setError("");
 			setLoading(true);
 			await authContext.signup(email, password);
+			addUserToDB(email.split(".")[0]);
 			navigate("/"); // navigate(-1) goes to prev page.
 			emailRef.current.value = "";
 			passwordRef.current.value = "";

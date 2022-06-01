@@ -28,10 +28,13 @@ function SearchForm(props) {
 				>
 					<Form onSubmit={props.submitHandler}>
 						<Row className="justify-content-center">
-							<Col sm={4} className="justify-content-center mt-3">
+							<Col sm={3} className="justify-content-center mt-3">
 								<SearchFormGroup props={props} type="make" />
 							</Col>
-							<Col sm={4} className="justify-content-center mt-3">
+							<Col sm={3} className="justify-content-center mt-3">
+								<SearchFormGroup props={props} type="category" />
+							</Col>
+							<Col sm={3} className="justify-content-center mt-3">
 								<SearchFormGroup props={props} type="model" />
 							</Col>
 							<Col sm={1} className="d-flex align-self-end mt-3">

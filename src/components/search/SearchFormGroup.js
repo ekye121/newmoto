@@ -4,8 +4,11 @@ function SearchFormGroup({ props, type }) {
 	function uppercaseFirstLetter(str) {
 		return str.replace(str[0], str[0].toUpperCase());
 	}
-
 	const typeStrFix = uppercaseFirstLetter(type);
+
+	const disableItem = props[`disable${typeStrFix}Item`];
+	const disableInput = props[`disable${typeStrFix}DropDown`];
+	const showDropDownMenu = props[`${type}DropDownMenu`];
 
 	return (
 		<Form.Group>
@@ -16,12 +19,8 @@ function SearchFormGroup({ props, type }) {
 					value={props[`${type}Text`]}
 					onChange={props[`${type}InputOnChange`]}
 					onClick={(e) => props.dropDownMenu(e, type)}
-					required
-					disabled={
-						type === "model"
-							? props.disableModelDropDown
-							: props.disableMakeDropDown
-					}
+					required={type !== "category"}
+					disabled={disableInput}
 					style={{
 						borderRadius: "25px",
 						paddingRight: "35px",
@@ -39,11 +38,7 @@ function SearchFormGroup({ props, type }) {
 						variant="primary"
 						onClick={(e) => props.dropDownClickHandler(e, type)}
 						className="form-toggle"
-						disabled={
-							type === "model"
-								? props.disableModelDropDown
-								: props.disableMakeDropDown
-						}
+						disabled={disableInput}
 						style={{
 							position: "relative",
 							borderRadius: "25px",
@@ -64,25 +59,19 @@ function SearchFormGroup({ props, type }) {
 							minWidth: "295px",
 							maxWidth: "100vw",
 						}}
-						show={
-							type === "model"
-								? props.modelDropDownMenu
-								: props.makeDropDownMenu
-						}
+						show={showDropDownMenu}
 					>
-						{props[`${type}sFiltered`].map((make) => {
+						{props[`${type}Filtered`].map((data) => {
 							return (
 								<Dropdown.Item
 									className="form-toggle"
-									disabled={
-										type === "model"
-											? props.disableModelItem
-											: props.disableMakeItem
-									}
-									key={make.id}
-									onClick={(e) => props.dropDownItemClickHandler(e, type)}
+									disabled={disableItem}
+									id={data.id || data.articleId}
+									key={data.id || data.articleId}
+									onClick={(e) => props.dropDownItemSelectHandler(e, type)}
 								>
-									{make.name}
+									{data.name || data.modelName}
+									{data.yearName ? ` (${data.yearName})` : null}
 								</Dropdown.Item>
 							);
 						})}

@@ -8,10 +8,10 @@ function HomePageMoto() {
 				alt="harley-davidson"
 				style={{
 					// top: "-165px",
-					position: "absolute",
+					// position: "absolute",
 					zIndex: "-1",
 					objectFit: "cover",
-					width: "100vw",
+					width: "100%",
 					height: "100vh",
 				}}
 			/>

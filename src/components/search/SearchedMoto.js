@@ -12,7 +12,12 @@ function SearchedMoto(props) {
 		physicalMeasuresAndCapacities,
 	} = props.data;
 
-	function saveMotoHandler() {}
+	function saveMotoClickHandler() {
+		console.log("saved moto");
+		// 1. add moto to saved page
+		// 2. toggle button to 'saved'
+		// 3.
+	}
 
 	return (
 		<>
@@ -40,7 +45,7 @@ function SearchedMoto(props) {
 						</div>
 						<Button
 							className="align-self-center"
-							onClick={saveMotoHandler}
+							onClick={saveMotoClickHandler}
 							style={{ borderRadius: "25px" }}
 						>
 							Save

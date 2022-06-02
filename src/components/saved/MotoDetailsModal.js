@@ -4,7 +4,6 @@ import { Modal, Image } from "react-bootstrap";
 import SearchedMotoDetailsTable from "../search/SearchedMotoDetailsTable";
 
 function MotoDetailsModal(props) {
-	console.log(`props ~~~>`, props);
 	const { data } = props;
 	return (
 		<Modal

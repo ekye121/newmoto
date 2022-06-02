@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import { Button, Card } from "react-bootstrap";
 import MotoDetailsModal from "../saved/MotoDetailsModal";
+import SaveContext from "../../store/SavedContext";
+import DeleteMotoModal from "../saved/DeleteMotoModal";
 
 function CardMotos(props) {
-	const [showDetailsModal, setShowDetailsModal] = useState(false);
+	const saveContext = useContext(SaveContext);
+	const [detailsModal, setDetailsModal] = useState(false);
+	const [deleteConfirmModal, setDeleteConfirmModal] = useState(false);
 
-	function removeMotoHandler() {}
+	function deleteSavedMotoHandler() {
+		saveContext.removeMotoHandler(props.data.articleCompleteInfo.articleID);
+	}
 
 	return (
 		<div>
@@ -34,24 +40,29 @@ function CardMotos(props) {
 					</Card.Title>
 					<div className="d-flex justify-content-around">
 						<Button
+							variant="danger"
+							style={{ borderRadius: "25px" }}
+							onClick={() => setDeleteConfirmModal(true)}
+						>
+							Delete
+						</Button>
+						<DeleteMotoModal
+							show={deleteConfirmModal}
+							onHide={() => setDeleteConfirmModal(false)}
+							delete={deleteSavedMotoHandler}
+						/>
+						<Button
 							variant="primary"
 							style={{ borderRadius: "25px" }}
-							onClick={() => setShowDetailsModal(true)}
+							onClick={() => setDetailsModal(true)}
 						>
 							Details
 						</Button>
 						<MotoDetailsModal
-							show={showDetailsModal}
-							onHide={() => setShowDetailsModal(false)}
+							show={detailsModal}
+							onHide={() => setDetailsModal(false)}
 							data={props.data}
 						/>
-						<Button
-							variant="danger"
-							style={{ borderRadius: "25px" }}
-							onClick={props.removeMotoHandler}
-						>
-							Delete
-						</Button>
 					</div>
 				</Card.Body>
 			</Card>

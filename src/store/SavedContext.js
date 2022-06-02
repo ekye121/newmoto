@@ -4,12 +4,14 @@ import AuthContext from "./AuthContext";
 
 const SavedContext = createContext({
 	userSavedData: {},
+	userSavedMotos: [],
 	saveMotoHandler() {},
 	removeMotoHandler() {},
 });
 
 export function SavedContextProvider(props) {
 	const [userSavedData, setUserSavedData] = useState({});
+	const [userSavedMotos, setUserSavedMotos] = useState([]);
 	const [user, setUser] = useState("");
 	const authContext = useContext(AuthContext);
 
@@ -19,8 +21,8 @@ export function SavedContextProvider(props) {
 				const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/users/${user}.json`;
 				const res = await fetch(url);
 				const data = await res.json();
-				console.log(`data ~~~>`, data);
 				setUserSavedData(data);
+				setUserSavedMotos(data.motos);
 				return data;
 			} catch (err) {
 				console.error(err);
@@ -35,9 +37,10 @@ export function SavedContextProvider(props) {
 		} else {
 			// get local storage data
 			const defaultUserData = { motos: [], learn: [] };
-			const localSavedData = JSON.parse(localStorage.getItem("userSavedData"));
-			if (localSavedData) {
-				setUserSavedData(localSavedData);
+			const localSavedData = localStorage.getItem("userSavedData");
+			if (localSavedData && localSavedData !== "undefined") {
+				setUserSavedData(JSON.parse(localSavedData));
+				setUserSavedMotos(JSON.parse(localSavedData).motos);
 			} else {
 				localStorage.setItem("userSavedData", JSON.stringify(defaultUserData));
 				setUserSavedData(defaultUserData);
@@ -81,7 +84,7 @@ export function SavedContextProvider(props) {
 			let newMotos;
 			let newUserData;
 			setUserSavedData((prev) => {
-				if (prev.motos) newMotos = [...prev.motos, data];
+				if (prev.motos) newMotos = [data, ...prev.motos];
 				else newMotos = [data];
 				prev.motos = newMotos;
 				newUserData = prev;
@@ -94,6 +97,7 @@ export function SavedContextProvider(props) {
 				// update local storage
 				localStorage.setItem("userSavedData", JSON.stringify(newUserData));
 			}
+			setUserSavedMotos(newUserData.motos);
 		}
 	}
 
@@ -106,7 +110,7 @@ export function SavedContextProvider(props) {
 				},
 				body: JSON.stringify(motoData),
 			};
-			const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/users/${user}/saved-data/motos/.json`;
+			const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/users/${user}/motos/.json`;
 			const res = await fetch(url, options);
 			const data = await res.json();
 			return data;
@@ -117,21 +121,27 @@ export function SavedContextProvider(props) {
 
 	function removeMotoHandler(articleID) {
 		// remove moto from userSavedData
-		let updatedSavedMotos;
+		let newUserData;
 		setUserSavedData((prev) => {
-			return (updatedSavedMotos = prev.motos.filter(
-				(moto) => moto.articleID !== articleID
-			));
+			prev.motos = prev.motos.filter(
+				(moto) => moto.articleCompleteInfo.articleID !== articleID
+			);
+			newUserData = prev;
+			return prev;
 		});
 		// update db- user saved data
 		if (authContext.currUser) {
-			console.log("logged in - remove moto");
-			removeMotoDataDB(updatedSavedMotos);
+			removeMotoDataDB(newUserData.motos);
+		} else {
+			// update local storage
+			localStorage.setItem("userSavedData", JSON.stringify(newUserData));
 		}
+		setUserSavedMotos(newUserData.motos);
 	}
 
 	const context = {
 		userSavedData,
+		userSavedMotos,
 		saveMotoHandler,
 		removeMotoHandler,
 	};

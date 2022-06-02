@@ -9,12 +9,9 @@ function SavedPage() {
 	const [savedUserData, setSavedUserData] = useState(
 		savedContext.userSavedData
 	);
-
-	useEffect(() => {
-		if (savedContext.userSavedData) {
-			setSavedUserData(savedContext.userSavedData);
-		}
-	}, [savedContext.userSavedData]);
+	const [userSavedMotos, setUserSavedMotos] = useState(
+		savedContext.userSavedMotos
+	);
 
 	return (
 		<div>
@@ -22,8 +19,8 @@ function SavedPage() {
 				<h3>Motos</h3>
 				<div id="savedMotos" style={{ height: "530px", overflow: "auto" }}>
 					<div className="d-flex">
-						{savedUserData?.motos?.length ? (
-							savedUserData.motos.map((moto) => {
+						{savedContext.userSavedMotos.length ? (
+							savedContext.userSavedMotos.map((moto) => {
 								return (
 									<CardMotos
 										key={moto.articleCompleteInfo.articleID}

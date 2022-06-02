@@ -1,14 +1,19 @@
-import React from "react";
+import { useState } from "react";
 
 import { Button, Card } from "react-bootstrap";
+import MotoDetailsModal from "../saved/MotoDetailsModal";
 
 function CardMotos(props) {
+	const [showDetailsModal, setShowDetailsModal] = useState(false);
+
+	function removeMotoHandler() {}
+
 	return (
 		<div>
 			<Card
 				style={{
 					width: "300px",
-					height: "435px",
+					height: "450px",
 					margin: "20px",
 					borderWidth: "5px",
 					borderRadius: "35px",
@@ -16,10 +21,8 @@ function CardMotos(props) {
 					filter: "drop-shadow(0px 0px 10px #e8e8e8)",
 				}}
 			>
-				<Card.Body className="d-flex flex-column justify-content-between">
-					<Card.Text className="text-center">
-						{props.data.articleCompleteInfo.makeName}
-					</Card.Text>
+				<Card.Body className="d-flex flex-column justify-content-between text-center">
+					<Card.Text>{props.data.articleCompleteInfo.makeName}</Card.Text>
 					<Card.Img
 						variant="top"
 						src={props.data.articleImage.link}
@@ -30,11 +33,24 @@ function CardMotos(props) {
 						{props.data.articleCompleteInfo.modelName}
 					</Card.Title>
 					<div className="d-flex justify-content-around">
-						<Button variant="primary" style={{ borderRadius: "25px" }}>
+						<Button
+							variant="primary"
+							style={{ borderRadius: "25px" }}
+							onClick={() => setShowDetailsModal(true)}
+						>
 							Details
 						</Button>
-						<Button variant="danger" style={{ borderRadius: "25px" }}>
-							Remove
+						<MotoDetailsModal
+							show={showDetailsModal}
+							onHide={() => setShowDetailsModal(false)}
+							data={props.data}
+						/>
+						<Button
+							variant="danger"
+							style={{ borderRadius: "25px" }}
+							onClick={props.removeMotoHandler}
+						>
+							Delete
 						</Button>
 					</div>
 				</Card.Body>

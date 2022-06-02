@@ -6,7 +6,6 @@ import SavedContext from "../store/SavedContext";
 
 function SavedPage() {
 	const savedContext = useContext(SavedContext);
-
 	const [savedUserData, setSavedUserData] = useState(
 		savedContext.userSavedData
 	);
@@ -21,14 +20,14 @@ function SavedPage() {
 		<div>
 			<Container style={{ marginTop: "40px" }}>
 				<h3>Motos</h3>
-				<div id="savedMotos" style={{ height: "510px", overflow: "auto" }}>
+				<div id="savedMotos" style={{ height: "530px", overflow: "auto" }}>
 					<div className="d-flex">
 						{savedUserData?.motos?.length ? (
 							savedUserData.motos.map((moto) => {
 								return (
 									<CardMotos
-										data={moto}
 										key={moto.articleCompleteInfo.articleID}
+										data={moto}
 									/>
 								);
 							})

@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
+import CardMotos from "../components/ui/CardMotos";
 
 import SavedContext from "../store/SavedContext";
 
@@ -10,10 +11,6 @@ function SavedPage() {
 		savedContext.userSavedData
 	);
 
-	// 	on moto save button click handler
-	// 		take moto data and add to saved data array
-	// 		load data array
-
 	useEffect(() => {
 		if (savedContext.userSavedData) {
 			setSavedUserData(savedContext.userSavedData);
@@ -22,18 +19,28 @@ function SavedPage() {
 
 	return (
 		<div>
-			<Container>
+			<Container style={{ marginTop: "40px" }}>
 				<h3>Motos</h3>
-				{savedUserData?.motos &&
-					savedUserData.motos.map((moto) => {
-						return (
-							<div key={moto.articleCompleteInfo.articleID}>
-								{moto.articleCompleteInfo.articleID}
-							</div>
-						);
-					})}
+				<div id="savedMotos" style={{ height: "510px", overflow: "auto" }}>
+					<div className="d-flex">
+						{savedUserData?.motos?.length ? (
+							savedUserData.motos.map((moto) => {
+								return (
+									<CardMotos
+										data={moto}
+										key={moto.articleCompleteInfo.articleID}
+									/>
+								);
+							})
+						) : (
+							<div>Nothing saved...</div>
+						)}
+					</div>
+				</div>
 
-				<h3>Learning</h3>
+				<div id="savedLearn">
+					<h3>Learning</h3>
+				</div>
 			</Container>
 		</div>
 	);

@@ -17,10 +17,7 @@ function SearchedMoto(props) {
 	} = props.data;
 
 	function saveMotoClickHandler() {
-		// 1.	add to saveddata
 		savedContext.saveMotoHandler(props.data);
-
-		// toggle save button
 		setSaveButtonToggle(true);
 	}
 

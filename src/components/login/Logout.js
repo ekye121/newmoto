@@ -8,7 +8,6 @@ function Logout() {
 	const navigate = useNavigate();
 
 	async function logoutHandler() {
-		console.log("logoout handler");
 		try {
 			setError("");
 			await authContext.logout();

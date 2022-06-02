@@ -5,8 +5,8 @@ import SearchedMotoDetailsTable from "./SearchedMotoDetailsTable";
 import SavedContext from "../../store/SavedContext";
 
 function SearchedMoto(props) {
-	const [saveButtonToggle, setSaveButtonToggle] = useState(false);
 	const savedContext = useContext(SavedContext);
+	const [saveButtonToggle, setSaveButtonToggle] = useState(false);
 	const {
 		articleCompleteInfo: articleInfo,
 		articleImage: image,
@@ -25,8 +25,17 @@ function SearchedMoto(props) {
 	}
 
 	useEffect(() => {
+		// toggle save button
 		setSaveButtonToggle(false);
-	}, [props]);
+		if (savedContext.userSavedData?.motos) {
+			for (const moto of savedContext.userSavedData.motos) {
+				if (moto.articleCompleteInfo.articleID === articleInfo.articleID) {
+					setSaveButtonToggle(true);
+					break;
+				}
+			}
+		}
+	}, [articleInfo.articleID, savedContext.userSavedData]);
 
 	return (
 		<>

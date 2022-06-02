@@ -1,20 +1,15 @@
-import { DataSnapshot } from "@firebase/database";
 import { createContext, useState, useEffect, useContext } from "react";
 
 import AuthContext from "./AuthContext";
 
 const SavedContext = createContext({
 	userSavedData: {},
-	userSavedMotos: [],
-	userSavedLearn: [],
 	saveMotoHandler() {},
 	removeMotoHandler() {},
 });
 
 export function SavedContextProvider(props) {
 	const [userSavedData, setUserSavedData] = useState({});
-	const [savedMotos, setSavedMotos] = useState([]);
-	const [savedLearn, setSavedLearn] = useState([]);
 	const [user, setUser] = useState("");
 	const authContext = useContext(AuthContext);
 
@@ -26,8 +21,6 @@ export function SavedContextProvider(props) {
 				const data = await res.json();
 				console.log(`data ~~~>`, data);
 				setUserSavedData(data);
-				setSavedMotos(data.motos);
-				setSavedLearn(data.learn);
 				return data;
 			} catch (err) {
 				console.error(err);
@@ -39,6 +32,16 @@ export function SavedContextProvider(props) {
 			const user = authContext.currUser.multiFactor.user.email.split(".")[0];
 			setUser(user);
 			getUserDataDB(user);
+		} else {
+			// get local storage data
+			const defaultUserData = { motos: [], learn: [] };
+			const localSavedData = JSON.parse(localStorage.getItem("userSavedData"));
+			if (localSavedData) {
+				setUserSavedData(localSavedData);
+			} else {
+				localStorage.setItem("userSavedData", JSON.stringify(defaultUserData));
+				setUserSavedData(defaultUserData);
+			}
 		}
 	}, [authContext.currUser]);
 
@@ -51,7 +54,7 @@ export function SavedContextProvider(props) {
 				},
 				body: JSON.stringify(motoData),
 			};
-			const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/users/${user}/saved-data/motos/.json`;
+			const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/users/${user}/motos/.json`;
 			const res = await fetch(url, options);
 			const data = await res.json();
 			return data;
@@ -61,12 +64,10 @@ export function SavedContextProvider(props) {
 	}
 
 	function saveMotoHandler(data) {
-		console.log(`data in saveMotoHandler ~~~>`, data);
 		// check if moto is already saved
 		let isSaved = false;
-		if (savedMotos) {
-			console.log(`savedMotos ~~~>`, savedMotos);
-			for (const [, moto] of savedMotos.entries()) {
+		if (userSavedData.motos) {
+			for (const moto of userSavedData.motos) {
 				const motoID = moto.articleCompleteInfo.articleID;
 				const dataID = data.articleCompleteInfo.articleID;
 				if (motoID === dataID) {
@@ -75,27 +76,23 @@ export function SavedContextProvider(props) {
 				}
 			}
 		}
-		console.log(`isSaved ~~~>`, isSaved);
 		if (!isSaved) {
-			console.log("is not saved");
-			// add moto to savedMotos
-			let updatedUserData;
-			setSavedMotos((prev) => {
-				console.log(`prev ~~~>`, prev);
-				if (prev) {
-					updatedUserData = [...prev, data];
-				} else {
-					updatedUserData = [data];
-				}
-				return updatedUserData;
-			});
+			// save moto
+			let newMotos;
+			let newUserData;
 			setUserSavedData((prev) => {
-				prev.motos = updatedUserData;
+				if (prev.motos) newMotos = [...prev.motos, data];
+				else newMotos = [data];
+				prev.motos = newMotos;
+				newUserData = prev;
 				return prev;
 			});
 			// update db- user saved data
 			if (authContext.currUser) {
-				saveMotoDataDB(updatedUserData);
+				saveMotoDataDB(newMotos);
+			} else {
+				// update local storage
+				localStorage.setItem("userSavedData", JSON.stringify(newUserData));
 			}
 		}
 	}
@@ -135,8 +132,6 @@ export function SavedContextProvider(props) {
 
 	const context = {
 		userSavedData,
-		userSavedMotos: savedMotos,
-		userSavedLearn: savedLearn,
 		saveMotoHandler,
 		removeMotoHandler,
 	};

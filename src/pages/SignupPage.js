@@ -1,6 +1,5 @@
 import { useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 import AuthContext from "../store/AuthContext";
 import CardLogin from "../components/ui/CardLogin";

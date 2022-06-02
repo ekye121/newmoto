@@ -295,13 +295,11 @@ function SearchPage() {
 			modelSearchInput: "model",
 		};
 
-		if (searchInputs[e.target.id]) {
-			if (e.key === "ArrowDown") {
-				e.preventDefault();
-				document
-					.getElementById(`${searchInputs[e.target.id]}DropDownMenu`)
-					.childNodes[0].focus();
-			}
+		if (searchInputs[e.target.id] && e.key === "ArrowDown") {
+			e.preventDefault();
+			document
+				.getElementById(`${searchInputs[e.target.id]}DropDownMenu`)
+				.childNodes[0].focus();
 		}
 	});
 

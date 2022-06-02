@@ -10,7 +10,7 @@ export async function getModelsByCategoryMakeAPI(makeId, category) {
 		};
 		const url = `https://motorcycle-specs-database.p.rapidapi.com/model/make-id/${makeId}/category/${category}`;
 		const res = await fetch(url, options);
-		const data = res.json();
+		const data = await res.json();
 		return data;
 	} catch (err) {
 		console.error(err);
@@ -32,7 +32,7 @@ export async function postModelsByCategoryMakeDB(
 		};
 		const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/models-by-category-make/${make}/${category}/.json`;
 		const res = await fetch(url, options);
-		const data = res.json();
+		const data = await res.json();
 		return data;
 	} catch (err) {
 		console.error(err);

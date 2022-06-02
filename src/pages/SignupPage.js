@@ -30,10 +30,10 @@ function Signup() {
 		fetch(url, options)
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(`data ~~~>`, data);
+				return data;
 			})
 			.catch((err) => {
-				console.error(err);
+				// console.error(err);
 			});
 	}
 
@@ -53,13 +53,14 @@ function Signup() {
 			setLoading(true);
 			await authContext.signup(email, password);
 			addUserToDB(email.split(".")[0]);
-			navigate("/"); // navigate(-1) goes to prev page.
+			navigate("/profile"); // navigate(-1) goes to prev page.
 			emailRef.current.value = "";
 			passwordRef.current.value = "";
 			passwordConfirmRef.current.value = "";
 		} catch (err) {
 			const error = err.toString().split(" ").slice(2, -1).join(" ");
 			setError(`Failed to create account: ${error}`);
+			console.clear();
 		}
 		setLoading(false);
 	}

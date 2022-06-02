@@ -1,8 +1,12 @@
-import React from "react";
+import { useState, useContext, useEffect } from "react";
 import { Container, Alert, Button } from "react-bootstrap";
+
 import SearchedMotoDetailsTable from "./SearchedMotoDetailsTable";
+import SavedContext from "../../store/SavedContext";
 
 function SearchedMoto(props) {
+	const [saveButtonToggle, setSaveButtonToggle] = useState(false);
+	const savedContext = useContext(SavedContext);
 	const {
 		articleCompleteInfo: articleInfo,
 		articleImage: image,
@@ -13,11 +17,16 @@ function SearchedMoto(props) {
 	} = props.data;
 
 	function saveMotoClickHandler() {
-		console.log("saved moto");
-		// 1. add moto to saved page
-		// 2. toggle button to 'saved'
-		// 3.
+		// 1.	add to saveddata
+		savedContext.saveMotoHandler(props.data);
+
+		// toggle save button
+		setSaveButtonToggle(true);
 	}
+
+	useEffect(() => {
+		setSaveButtonToggle(false);
+	}, [props]);
 
 	return (
 		<>
@@ -48,7 +57,7 @@ function SearchedMoto(props) {
 							onClick={saveMotoClickHandler}
 							style={{ borderRadius: "25px" }}
 						>
-							Save
+							{saveButtonToggle ? "Saved" : "Save"}
 						</Button>
 					</div>
 					<img

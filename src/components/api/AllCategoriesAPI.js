@@ -10,7 +10,7 @@ export async function getAllCategoriesAPI() {
 		};
 		const url = "https://motorcycle-specs-database.p.rapidapi.com/category";
 		const res = await fetch(url, options);
-		const data = res.json();
+		const data = await res.json();
 		return data;
 	} catch (err) {
 		console.error(err);
@@ -28,7 +28,7 @@ export async function postAllCategoriesDB(allCategoriesData) {
 		};
 		const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/all-categories/.json`;
 		const res = await fetch(url, options);
-		const data = res.json();
+		const data = await res.json();
 		return data;
 	} catch (err) {
 		console.error(err);

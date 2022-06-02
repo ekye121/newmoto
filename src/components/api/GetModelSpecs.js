@@ -5,7 +5,7 @@ export async function getModelSpecsDB(make, model) {
 	try {
 		const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/model-specs/${make}/${model}/.json`;
 		const res = await fetch(url);
-		const data = res.json();
+		const data = await res.json();
 		return data;
 	} catch (err) {
 		console.error(err);
@@ -22,7 +22,7 @@ export async function getModelSpecsAPI(make, model) {
 		};
 		const url = `https://motorcycle-specs-database.p.rapidapi.com/make/${make}/model/${model}`;
 		const res = await fetch(url, options);
-		const data = res.json();
+		const data = await res.json();
 		return data;
 	} catch (err) {
 		console.error(err);
@@ -40,7 +40,7 @@ export async function saveModelSpecsDB(make, model, modelSpecs) {
 		};
 		const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/model-specs/${make}/${model}/.json`;
 		const res = await fetch(url, options);
-		const data = res.json();
+		const data = await res.json();
 		return data;
 	} catch (err) {
 		console.error(err);

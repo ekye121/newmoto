@@ -1,47 +1,57 @@
 import { useContext, useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
 
-import AuthContext from "../store/AuthContext";
-// import MotosContext from "../store/MotosContext";
+import SavedContext from "../store/SavedContext";
+// import AuthContext from "../store/AuthContext";
 
 function SavedPage() {
+	const savedContext = useContext(SavedContext);
 	// const motosContext = useContext(MotosContext);
-	const authContext = useContext(AuthContext);
-	const [savedMotoData, setSavedMotoData] = useState([]);
+	// const authContext = useContext(AuthContext);
+	const [savedUserData, setSavedUserData] = useState(
+		savedContext.userSavedData
+	);
+	const [savedMotoData, setSavedMotoData] = useState(savedContext.savedMotos);
 
 	useEffect(() => {
-		async function getUserDataDB(user) {
-			try {
-				const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/users/${user}/saved-moto.json`;
-				const res = await fetch(url);
-				const data = res.json();
-				setSavedMotoData(data);
-				return data;
-			} catch (err) {
-				console.error(err);
-			}
-		}
-
-		if (authContext.currUser) {
-			// get user saved data
-			const user = authContext.currUser.multiFactor.user.email.split(".")[0];
-			const userData = getUserDataDB(user);
-			if (userData) {
-				setSavedMotoData(userData);
-			}
+		console.log(
+			`Object.keys(savedContext.userSavedData) ~~~>`,
+			Object.keys(savedContext?.userSavedData)
+		);
+		if (Object.keys(savedContext?.userSavedData).length) {
+			// load from savedContext
+			console.log("saved page");
+			// setSavedMotoData(savedContext.savedMotos);
 		} else {
 			// load local storage
 		}
-	}, []);
+	}, [savedContext.userSavedData]);
 
 	// 	on moto save button click handler
 	// 		take moto data and add to saved data array
 	// 		load data array
 
+	useEffect(() => {
+		if (savedContext.userSavedData) {
+			setSavedUserData(savedContext.userSavedData);
+		}
+	}, [savedContext.userSavedData]);
+
 	return (
 		<div>
-			{/* {savedMotoData.map((moto) => {
-				return <div>moto</div>;
-			})} */}
+			<Container>
+				<h3>Motos</h3>
+				{savedUserData.motos &&
+					savedUserData.motos.map((moto) => {
+						return (
+							<div key={moto.articleCompleteInfo.articleID}>
+								{moto.articleCompleteInfo.articleID}
+							</div>
+						);
+					})}
+
+				<h3>Learning</h3>
+			</Container>
 		</div>
 	);
 }

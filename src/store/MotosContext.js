@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 
+import AuthContext from "./AuthContext";
 // import {
 // 	getAllCategoriesAPI,
 // 	postAllCategoriesDB,
@@ -10,13 +11,14 @@ const MotosContext = createContext({
 	modelsByMake: {},
 	allCategories: {},
 	modelsByCategoryMake: {},
+	userSavedData: {},
 });
 
 export function MotosContextProvider(props) {
 	const [allMakes, setAllMakes] = useState([]);
 	const [modelsByMake, setModelsByMake] = useState({});
 	const [allCategories, setAllCategories] = useState([]);
-	const [modelsByCategoryMake, setModelsByCategoryMake] = useState([]);
+	const [modelsByCategoryMake, setModelsByCategoryMake] = useState({});
 
 	useEffect(() => {
 		const url =

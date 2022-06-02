@@ -7,16 +7,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import { AuthContextProvider } from "./store/AuthContext";
 import { MotosContextProvider } from "./store/MotosContext";
+import { SavedContextProvider } from "./store/SavedContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<AuthContextProvider>
 		<MotosContextProvider>
-			<BrowserRouter>
-				{/* <React.StrictMode> */}
-				<App />
-				{/* </React.StrictMode> */}
-			</BrowserRouter>
+			<SavedContextProvider>
+				<BrowserRouter>
+					{/* <React.StrictMode> */}
+					<App />
+					{/* </React.StrictMode> */}
+				</BrowserRouter>
+			</SavedContextProvider>
 		</MotosContextProvider>
 	</AuthContextProvider>
 );

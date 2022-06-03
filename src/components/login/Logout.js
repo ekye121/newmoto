@@ -21,10 +21,10 @@ function Logout() {
 	return (
 		<div
 			className="position-relative d-flex justify-content-end"
-			style={{ right: "25px", top: "10px" }}
+			style={{ top: "10px" }}
 		>
 			<Button
-				variant="danger"
+				variant="secondary"
 				onClick={logoutHandler}
 				style={{ borderRadius: "25px" }}
 			>

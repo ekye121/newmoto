@@ -19,7 +19,7 @@ function SavedPage() {
 				<h3>Motos</h3>
 				<div id="savedMotos" style={{ height: "530px", overflow: "auto" }}>
 					<div className="d-flex">
-						{savedContext.userSavedMotos.length ? (
+						{savedContext.userSavedMotos?.length ? (
 							savedContext.userSavedMotos.map((moto) => {
 								return (
 									<CardMotos
@@ -34,9 +34,9 @@ function SavedPage() {
 					</div>
 				</div>
 
-				<div id="savedLearn">
+				{/* <div id="savedLearn">
 					<h3>Learning</h3>
-				</div>
+				</div> */}
 			</Container>
 		</div>
 	);

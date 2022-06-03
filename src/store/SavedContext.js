@@ -22,7 +22,7 @@ export function SavedContextProvider(props) {
 				const res = await fetch(url);
 				const data = await res.json();
 				setUserSavedData(data);
-				setUserSavedMotos(data.motos);
+				setUserSavedMotos(data?.motos);
 				return data;
 			} catch (err) {
 				console.error(err);

@@ -40,7 +40,7 @@ function CardMotos(props) {
 					</Card.Title>
 					<div className="d-flex justify-content-around">
 						<Button
-							variant="danger"
+							variant="light"
 							style={{ borderRadius: "25px" }}
 							onClick={() => setDeleteConfirmModal(true)}
 						>
@@ -52,7 +52,7 @@ function CardMotos(props) {
 							delete={deleteSavedMotoHandler}
 						/>
 						<Button
-							variant="primary"
+							variant="secondary"
 							style={{ borderRadius: "25px" }}
 							onClick={() => setDetailsModal(true)}
 						>

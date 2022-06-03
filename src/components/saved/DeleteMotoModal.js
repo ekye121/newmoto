@@ -24,14 +24,14 @@ function DeleteMotoModal(props) {
 			<Modal.Footer className="d-flex justify-content-around">
 				<Button
 					style={{ borderRadius: "25px" }}
-					variant="danger"
+					variant="secondary"
 					onClick={deleteMoto}
 				>
 					Yes
 				</Button>
 				<Button
 					style={{ borderRadius: "25px" }}
-					variant="primary"
+					variant="light"
 					onClick={props.onHide}
 				>
 					Cancel

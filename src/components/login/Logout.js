@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../store/AuthContext";
+import { Button } from "react-bootstrap";
 
 function Logout() {
 	const [error, setError] = useState("");
@@ -18,8 +19,17 @@ function Logout() {
 	}
 
 	return (
-		<div>
-			<button onClick={logoutHandler}> log out </button>
+		<div
+			className="position-relative d-flex justify-content-end"
+			style={{ right: "25px", top: "10px" }}
+		>
+			<Button
+				variant="danger"
+				onClick={logoutHandler}
+				style={{ borderRadius: "25px" }}
+			>
+				Log out
+			</Button>
 		</div>
 	);
 }

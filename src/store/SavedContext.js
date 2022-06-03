@@ -5,6 +5,7 @@ import AuthContext from "./AuthContext";
 const SavedContext = createContext({
 	userSavedData: {},
 	userSavedMotos: [],
+	userSavedProfileData: {},
 	saveMotoHandler() {},
 	removeMotoHandler() {},
 });
@@ -12,6 +13,7 @@ const SavedContext = createContext({
 export function SavedContextProvider(props) {
 	const [userSavedData, setUserSavedData] = useState({});
 	const [userSavedMotos, setUserSavedMotos] = useState([]);
+	const [userSavedProfileData, setUserSavedProfileData] = useState({});
 	const [user, setUser] = useState("");
 	const authContext = useContext(AuthContext);
 
@@ -23,6 +25,7 @@ export function SavedContextProvider(props) {
 				const data = await res.json();
 				setUserSavedData(data);
 				setUserSavedMotos(data?.motos);
+				setUserSavedProfileData(data?.profile ?? {});
 				return data;
 			} catch (err) {
 				console.error(err);
@@ -139,11 +142,40 @@ export function SavedContextProvider(props) {
 		setUserSavedMotos(newUserData.motos);
 	}
 
+	async function saveProfileDataDB(profileData, type) {
+		try {
+			const options = {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(profileData),
+			};
+			const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/users/${user}/profile/${type}.json`;
+			const res = await fetch(url, options);
+			const data = await res.json();
+			return data;
+		} catch (err) {
+			console.error(err);
+		}
+	}
+
+	function saveProfileDataHandler(data, type) {
+		// save profile data
+		setUserSavedProfileData((prev) => {
+			prev[type] = data;
+			return prev;
+		});
+		saveProfileDataDB(data, type);
+	}
+
 	const context = {
 		userSavedData,
 		userSavedMotos,
+		userSavedProfileData,
 		saveMotoHandler,
 		removeMotoHandler,
+		saveProfileDataHandler,
 	};
 
 	return (

@@ -24,7 +24,8 @@ function CardMotos(props) {
 					borderWidth: "5px",
 					borderRadius: "35px",
 					borderColor: "#e8e8e8",
-					filter: "drop-shadow(0px 0px 10px #e8e8e8)",
+					// filter: "drop-shadow(0px 0px 10px #e8e8e8)",
+					boxShadow: "0 0 10px #e8e8e8",
 				}}
 			>
 				<Card.Body className="d-flex flex-column justify-content-between text-center">

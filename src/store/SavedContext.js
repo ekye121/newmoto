@@ -161,13 +161,34 @@ export function SavedContextProvider(props) {
 	}
 
 	function saveProfileDataHandler(data, type) {
-		// save profile data
 		setUserSavedProfileData((prev) => {
 			prev[type] = data;
 			return prev;
 		});
 		saveProfileDataDB(data, type);
 	}
+
+	// async function removeProfileDataDB(profileData, type) {
+	// 	try {
+	// 		const options = {
+	// 			method: "PATCH",
+	// 			headers: {
+	// 				"Content-Type": "application/json",
+	// 			},
+	// 			body: JSON.stringify(profileData),
+	// 		};
+	// 		const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/users/${user}/profile/${type}/.json`;
+	// 		const res = await fetch(url, options);
+	// 		const data = await res.json();
+	// 		return data;
+	// 	} catch (err) {
+	// 		console.error(err);
+	// 	}
+	// }
+
+	// function removeProfileDataHandler(data, type) {
+	// 	setUserSavedProfileData((prev) => {});
+	// }
 
 	const context = {
 		userSavedData,

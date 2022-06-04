@@ -61,7 +61,7 @@ function MilesRode() {
 					<h3 style={{ fontWeight: "bold" }}>{milesRode}</h3>
 					<Form className="d-flex" onSubmit={addMilesRodeHandler}>
 						<Form.Control
-							style={{ borderRadius: "25px", width: "120px" }}
+							style={{ borderRadius: "15px", width: "120px" }}
 							placeholder="add miles..."
 							ref={addMilesInputRef}
 							required
@@ -78,8 +78,8 @@ function MilesRode() {
 				</CardProfile>
 			</Col>
 			<Col>
-				<CardProfile>
-					<h3>Miles Rode Log</h3>
+				<CardProfile className="d-flex flex-column">
+					<h3 className="text-center">Miles Rode Log</h3>
 					<div style={{ overflow: "auto", width: "100%" }}>
 						<Table striped hover>
 							<thead>

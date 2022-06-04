@@ -21,7 +21,7 @@ function Logout() {
 	return (
 		<div
 			className="position-relative d-flex justify-content-end"
-			style={{ top: "10px" }}
+			style={{ top: "10px", right: "10px" }}
 		>
 			<Button
 				variant="secondary"

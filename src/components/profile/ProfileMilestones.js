@@ -49,14 +49,6 @@ function ProfileMilestones() {
 		});
 	}
 
-	// function deleteMilestoneHandler(i) {
-	// setMilestones((prev) => {
-	// 	prev = prev.filter((_, idx) => i !== idx);
-	// 	saveProfileDataHandler(prev, "notes");
-	// 	return prev;
-	// });
-	// }
-
 	return (
 		<Col>
 			<CardProfile

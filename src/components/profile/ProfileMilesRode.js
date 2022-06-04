@@ -80,7 +80,7 @@ function MilesRode() {
 			<Col>
 				<CardProfile className="d-flex flex-column">
 					<h3 className="text-center">Miles Rode Log</h3>
-					<div style={{ overflow: "auto", width: "100%" }}>
+					<div style={{ overflow: "auto", width: "100%", padding: "5px" }}>
 						<Table striped hover>
 							<thead>
 								<tr>

@@ -23,7 +23,7 @@ function MainNavigation() {
 		<Navbar bg="dark" expand="lg" variant="dark">
 			<Container>
 				<Navbar.Brand>
-					<Link to="/" className={classes.logo}>
+					<Link to="/newmoto" className={classes.logo}>
 						NEWMOTO
 					</Link>
 				</Navbar.Brand>

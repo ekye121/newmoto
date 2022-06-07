@@ -8,22 +8,22 @@ function DefaultNavigation() {
 		<>
 			<Navbar.Collapse className="justify-content-end">
 				<Nav>
-					<LinkContainer to="/search">
+					<LinkContainer to="/newmoto/search">
 						<Nav.Link>
 							<h5>SEARCH</h5>
 						</Nav.Link>
 					</LinkContainer>
-					<LinkContainer to="/learn">
+					<LinkContainer to="/newmoto/learn">
 						<Nav.Link>
 							<h5>LEARN</h5>
 						</Nav.Link>
 					</LinkContainer>
-					<LinkContainer to="/saved">
+					<LinkContainer to="/newmoto/saved">
 						<Nav.Link>
 							<h5>SAVED</h5>
 						</Nav.Link>
 					</LinkContainer>
-					<LinkContainer to="/login">
+					<LinkContainer to="/newmoto/login">
 						<Nav.Link>
 							<h5>LOGIN</h5>
 						</Nav.Link>

@@ -1,6 +1,5 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import { getDatabase, ref, set, onValue } from "firebase/database";
 
 const app = firebase.initializeApp({
 	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -15,19 +14,3 @@ const app = firebase.initializeApp({
 
 export const auth = app.auth();
 export default app;
-
-const db = getDatabase();
-
-function writeUserData(userId, email) {
-	const reference = ref(db, "users/" + userId);
-
-	set(reference, {
-		email,
-	});
-}
-
-// const distanceRef = ref(db, "users/" + userId + "/distance");
-// onValue(distanceRef, (snapshot) => {
-// 	const data = snapshot.val();
-// 	updateDistance(postElement, data);
-// });

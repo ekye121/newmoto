@@ -1,11 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 
-import AuthContext from "./AuthContext";
-// import {
-// 	getAllCategoriesAPI,
-// 	postAllCategoriesDB,
-// } from "../components/api/AllCategoriesAPI";
-
 const MotosContext = createContext({
 	allMakes: [],
 	modelsByMake: {},

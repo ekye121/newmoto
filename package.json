@@ -1,4 +1,5 @@
 {
+	"homepage": "https://ekye121.github.io/newmoto",
 	"name": "newmoto",
 	"version": "0.1.0",
 	"private": true,
@@ -9,6 +10,7 @@
 		"bootstrap": "^5.1.3",
 		"firebase": "^9.7.0",
 		"firebase-admin": "^10.2.0",
+		"gh-pages": "^4.0.0",
 		"react": "^18.1.0",
 		"react-bootstrap": "^2.3.1",
 		"react-datepicker": "^4.8.0",
@@ -18,6 +20,8 @@
 		"react-scripts": "5.0.1"
 	},
 	"scripts": {
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -b master -d build",
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",

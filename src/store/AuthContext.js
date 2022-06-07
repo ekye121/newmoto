@@ -16,6 +16,7 @@ export function AuthContextProvider(props) {
 	}
 
 	function logout() {
+		setCurrUser(null);
 		return auth.signOut();
 	}
 

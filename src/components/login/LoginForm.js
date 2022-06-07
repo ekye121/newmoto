@@ -3,7 +3,7 @@ import { Form, Button, Alert } from "react-bootstrap";
 function LoginForm(props) {
 	return (
 		<div>
-			<h2 className="text-center mb-4">{props.type}</h2>
+			<h2 className="text-center mb-4 mt-2">{props.type}</h2>
 			{props.error && <Alert variant="danger">{props.error}</Alert>}
 			{props.message && <Alert variant="success">{props.message}</Alert>}
 			<Form onSubmit={props.submitHandler}>
@@ -12,13 +12,13 @@ function LoginForm(props) {
 					<Form.Control type="email" required ref={props.emailRef} />
 				</Form.Group>
 				{props.type !== "Reset Password" ? (
-					<Form.Group id="password">
+					<Form.Group id="password" className="mt-3">
 						<Form.Label>Password</Form.Label>
 						<Form.Control type="password" required ref={props.passwordRef} />
 					</Form.Group>
 				) : null}
 				{props.type === "Sign Up" ? (
-					<Form.Group id="password-confirm">
+					<Form.Group id="password-confirm" className="mt-3">
 						<Form.Label>Password Confirmation</Form.Label>
 						<Form.Control
 							type="password"
@@ -28,7 +28,7 @@ function LoginForm(props) {
 					</Form.Group>
 				) : null}
 				<Button
-					className="w-100 text-center mt-2"
+					className="w-100 text-center mt-3"
 					type="submit"
 					disabled={props.loading}
 				>

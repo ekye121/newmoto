@@ -24,18 +24,31 @@ function CardMotos(props) {
 					borderWidth: "5px",
 					borderRadius: "35px",
 					borderColor: "#e8e8e8",
-					// filter: "drop-shadow(0px 0px 10px #e8e8e8)",
 					boxShadow: "0 0 10px #e8e8e8",
 				}}
 			>
 				<Card.Body className="d-flex flex-column justify-content-between text-center">
-					<Card.Text>{props.data.articleCompleteInfo.makeName}</Card.Text>
+					<Card.Text
+						style={{
+							marginBottom: "2px",
+							fontFamily: "Oswald, sans-serif",
+							fontSize: "18px",
+						}}
+					>
+						{props.data.articleCompleteInfo.makeName}
+					</Card.Text>
 					<Card.Img
 						variant="top"
 						src={props.data.articleImage.link}
-						style={{ width: "265px", height: "175px", objectFit: "cover" }}
+						style={{ width: "258px", height: "172px", objectFit: "cover" }}
 					/>
-					<Card.Title style={{ marginTop: "8px" }}>
+					<Card.Title
+						style={{
+							marginTop: "8px",
+							// fontFamily: "Oswald, sans-serif",
+							// fontSize: "22px",
+						}}
+					>
 						{props.data.articleCompleteInfo.yearName}{" "}
 						{props.data.articleCompleteInfo.modelName}
 					</Card.Title>

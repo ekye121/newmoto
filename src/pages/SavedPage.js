@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Container } from "react-bootstrap";
 import CardMotos from "../components/ui/CardMotos";
 
@@ -6,12 +6,12 @@ import SavedContext from "../store/SavedContext";
 
 function SavedPage() {
 	const savedContext = useContext(SavedContext);
-	const [savedUserData, setSavedUserData] = useState(
-		savedContext.userSavedData
-	);
-	const [userSavedMotos, setUserSavedMotos] = useState(
-		savedContext.userSavedMotos
-	);
+	// const [savedUserData, setSavedUserData] = useState(
+	// 	savedContext.userSavedData
+	// );
+	// const [userSavedMotos, setUserSavedMotos] = useState(
+	// 	savedContext.userSavedMotos
+	// );
 
 	return (
 		<div>
@@ -33,10 +33,6 @@ function SavedPage() {
 						)}
 					</div>
 				</div>
-
-				{/* <div id="savedLearn">
-					<h3>Learning</h3>
-				</div> */}
 			</Container>
 		</div>
 	);

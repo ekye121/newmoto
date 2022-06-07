@@ -68,7 +68,11 @@ function ProfileNotes() {
 				</div>
 				<Form
 					onSubmit={addNoteHandler}
-					style={{ bottom: "0px", position: "relative", marginTop: "10px" }}
+					style={{
+						bottom: "0px",
+						position: "relative",
+						marginTop: "10px",
+					}}
 				>
 					<Row>
 						<Col sm={9} xs={9} lg={10}>
@@ -79,7 +83,7 @@ function ProfileNotes() {
 									padding: "10px",
 								}}
 								placeholder="add note..."
-								as="textarea"
+								type="text"
 								required
 								ref={noteRef}
 							></Form.Control>

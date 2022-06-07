@@ -9,16 +9,24 @@ function LoggedInNavigation() {
 			<Navbar.Collapse className="justify-content-end">
 				<Nav>
 					<LinkContainer to="/search">
-						<Nav.Link>SEARCH</Nav.Link>
+						<Nav.Link>
+							<h5>SEARCH</h5>
+						</Nav.Link>
 					</LinkContainer>
 					<LinkContainer to="/learn">
-						<Nav.Link>LEARN</Nav.Link>
+						<Nav.Link>
+							<h5>LEARN</h5>
+						</Nav.Link>
 					</LinkContainer>
 					<LinkContainer to="/saved">
-						<Nav.Link>SAVED</Nav.Link>
+						<Nav.Link>
+							<h5>SAVED</h5>
+						</Nav.Link>
 					</LinkContainer>
 					<LinkContainer to="/profile">
-						<Nav.Link>PROFILE</Nav.Link>
+						<Nav.Link>
+							<h5>PROFILE</h5>
+						</Nav.Link>
 					</LinkContainer>
 				</Nav>
 			</Navbar.Collapse>

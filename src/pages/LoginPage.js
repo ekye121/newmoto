@@ -24,12 +24,13 @@ function Login() {
 			setError("");
 			setLoading(true);
 			await authContext.login(email, password);
-			navigate("/profile"); // navigate(-1) goes to prev page.
+			navigate("/"); // navigate(-1) goes to prev page.
 			emailRef.current.value = "";
 			passwordRef.current.value = "";
 		} catch (err) {
 			const str = err.toString().split(" ").slice(2, -1).join(" ");
 			setError(`Failed to log in: ${str}`);
+			console.clear();
 		}
 		setLoading(false);
 	}

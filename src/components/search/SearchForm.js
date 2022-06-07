@@ -37,13 +37,17 @@ function SearchForm(props) {
 							<Col sm={3} className="justify-content-center mt-3">
 								<SearchFormGroup props={props} type="model" />
 							</Col>
-							<Col sm={1} className="d-flex align-self-end mt-3">
+							<Col
+								sm={1}
+								className="d-flex align-self-end justify-content-end mt-3"
+								style={{ right: "5px", position: "relative" }}
+							>
 								<Button
 									id="buttonSearchMoto"
 									variant="primary"
 									type="submit"
 									style={{
-										// background: "#212529",
+										background: "#6c757d",
 										border: "1px transparent",
 										borderRadius: "25px",
 									}}

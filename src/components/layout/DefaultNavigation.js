@@ -9,16 +9,24 @@ function DefaultNavigation() {
 			<Navbar.Collapse className="justify-content-end">
 				<Nav>
 					<LinkContainer to="/search">
-						<Nav.Link>SEARCH</Nav.Link>
+						<Nav.Link>
+							<h5>SEARCH</h5>
+						</Nav.Link>
 					</LinkContainer>
 					<LinkContainer to="/learn">
-						<Nav.Link>LEARN</Nav.Link>
+						<Nav.Link>
+							<h5>LEARN</h5>
+						</Nav.Link>
 					</LinkContainer>
 					<LinkContainer to="/saved">
-						<Nav.Link>SAVED</Nav.Link>
+						<Nav.Link>
+							<h5>SAVED</h5>
+						</Nav.Link>
 					</LinkContainer>
 					<LinkContainer to="/login">
-						<Nav.Link>LOGIN</Nav.Link>
+						<Nav.Link>
+							<h5>LOGIN</h5>
+						</Nav.Link>
 					</LinkContainer>
 				</Nav>
 			</Navbar.Collapse>

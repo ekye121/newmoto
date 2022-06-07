@@ -61,7 +61,11 @@ function SearchedMoto(props) {
 						<Button
 							className="align-self-center"
 							onClick={saveMotoClickHandler}
-							style={{ borderRadius: "25px" }}
+							style={{
+								borderRadius: "25px",
+								borderWidth: "0px",
+								backgroundColor: "#6c757d",
+							}}
 						>
 							{saveButtonToggle ? "Saved" : "Save"}
 						</Button>

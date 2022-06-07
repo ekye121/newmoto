@@ -20,12 +20,6 @@ function ProfilePage(props) {
 				</Row>
 				<ProfileMaintenance />
 				<ProfileJournal />
-
-				{/* <div>Journal</div>
-				<div>Milestones</div>
-				<div>Notes</div>
-				<div>Maintenance</div>
-				<div>Fav Bikes</div> */}
 			</Container>
 		</>
 	);

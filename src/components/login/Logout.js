@@ -15,6 +15,7 @@ function Logout() {
 			navigate("/");
 		} catch (err) {
 			setError(`Failed to log out: ${err}`);
+			console.clear();
 		}
 	}
 

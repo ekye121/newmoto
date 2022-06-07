@@ -12,7 +12,7 @@ function Logout() {
 		try {
 			setError("");
 			await authContext.logout();
-			navigate("/");
+			navigate("/newmoto");
 		} catch (err) {
 			setError(`Failed to log out: ${err}`);
 			console.clear();

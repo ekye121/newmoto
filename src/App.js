@@ -16,21 +16,21 @@ function App() {
 	return (
 		<Layout>
 			<Routes>
-				<Route path="/" exact element={<Home />} />
-				<Route path="/search" element={<Search />} />
-				<Route path="/learn" element={<Learn />} />
-				<Route path="/saved" element={<Saved />} />
+				<Route path="/newmoto" exact element={<Home />} />
+				<Route path="/newmoto/search" element={<Search />} />
+				<Route path="/newmoto/learn" element={<Learn />} />
+				<Route path="/newmoto/saved" element={<Saved />} />
 				<Route
-					path="/profile"
+					path="/newmoto/profile"
 					element={
 						<PrivateRoute>
 							<Profile />
 						</PrivateRoute>
 					}
 				/>
-				<Route path="/login" element={<Login />} />
-				<Route path="/signup" element={<Signup />} />
-				<Route path="/forgot-password" element={<ForgotPassword />} />
+				<Route path="/newmoto/login" element={<Login />} />
+				<Route path="/newmoto/signup" element={<Signup />} />
+				<Route path="/newmoto/forgot-password" element={<ForgotPassword />} />
 			</Routes>
 		</Layout>
 	);

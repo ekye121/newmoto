@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import { Container, Alert, Button } from "react-bootstrap";
+import { Container, Alert, Button, Image } from "react-bootstrap";
 
 import SearchedMotoDetailsTable from "./SearchedMotoDetailsTable";
 import SavedContext from "../../store/SavedContext";
@@ -20,6 +20,34 @@ function SearchedMoto(props) {
 		savedContext.saveMotoHandler(props.data);
 		setSaveButtonToggle(true);
 	}
+
+	useEffect(() => {
+		// function downloadImage() {
+		// 	function imageReceived() {
+		// 		let canvas = document.createElement("canvas");
+		// 		let context = canvas.getContext("2d");
+		// 		canvas.width = imageDL.width || "100%";
+		// 		canvas.height = imageDL.height || "100%";
+		// 		context.drawImage(imageDL, 0, 0);
+		// 		document.getElementById("imageBox").appendChild(canvas);
+		// 		console.log(`canvas ~~~>`, canvas);
+		// 		try {
+		// 			localStorage.setItem(
+		// 				"saved-image-example",
+		// 				canvas.toDataURL("image/png")
+		// 			);
+		// 		} catch (err) {
+		// 			console.log("Error: " + err);
+		// 		}
+		// 	}
+		// 	let imageURL = image.link;
+		// 	const imageDL = new Image();
+		// 	imageDL.crossOrigin = "Anonymous";
+		// 	imageDL.addEventListener("load", imageReceived, false);
+		// 	imageDL.src = imageURL;
+		// }
+		// downloadImage();
+	}, [image.link]);
 
 	useEffect(() => {
 		// toggle save button
@@ -70,7 +98,7 @@ function SearchedMoto(props) {
 							{saveButtonToggle ? "Saved" : "Save"}
 						</Button>
 					</div>
-					<img
+					<Image
 						src={image.link}
 						alt={image.imageName}
 						style={{ width: "100%", height: "auto" }}

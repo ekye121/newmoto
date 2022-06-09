@@ -8,22 +8,22 @@ function LoggedInNavigation() {
 		<>
 			<Navbar.Collapse className="justify-content-end">
 				<Nav>
-					<LinkContainer to="/newmoto/search">
+					<LinkContainer to="/search">
 						<Nav.Link>
 							<h5>SEARCH</h5>
 						</Nav.Link>
 					</LinkContainer>
-					<LinkContainer to="/newmoto/learn">
+					<LinkContainer to="/learn">
 						<Nav.Link>
 							<h5>LEARN</h5>
 						</Nav.Link>
 					</LinkContainer>
-					<LinkContainer to="/newmoto/saved">
+					<LinkContainer to="/saved">
 						<Nav.Link>
 							<h5>SAVED</h5>
 						</Nav.Link>
 					</LinkContainer>
-					<LinkContainer to="/newmoto/profile">
+					<LinkContainer to="/profile">
 						<Nav.Link>
 							<h5>PROFILE</h5>
 						</Nav.Link>

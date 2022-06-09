@@ -24,7 +24,7 @@ function Login() {
 			setError("");
 			setLoading(true);
 			await authContext.login(email, password);
-			navigate("/newmoto"); // navigate(-1) goes to prev page.
+			navigate("/"); // navigate(-1) goes to prev page.
 			emailRef.current.value = "";
 			passwordRef.current.value = "";
 		} catch (err) {

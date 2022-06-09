@@ -39,7 +39,7 @@ function CardMotos(props) {
 					</Card.Text>
 					<Card.Img
 						variant="top"
-						src={props.data.articleImage.link}
+						src={`//images.weserv.nl/?url=${props.data.articleImage.link}&w=800&h=800`}
 						style={{ width: "258px", height: "172px", objectFit: "cover" }}
 					/>
 					<Card.Title

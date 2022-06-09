@@ -99,7 +99,7 @@ function SearchedMoto(props) {
 						</Button>
 					</div>
 					<Image
-						src={image.link}
+						src={`//images.weserv.nl/?url=${image.link}&w=800&h=800`}
 						alt={image.imageName}
 						style={{ width: "100%", height: "auto" }}
 					/>

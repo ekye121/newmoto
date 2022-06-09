@@ -23,7 +23,11 @@ function MainNavigation() {
 		<Navbar bg="dark" expand="lg" variant="dark">
 			<Container>
 				<Navbar.Brand>
-					<Link to="/" className={classes.logo}>
+					<Link
+						to="/"
+						className={classes.logo}
+						style={{ textDecoration: "inherit", color: "#fff" }}
+					>
 						NEWMOTO
 					</Link>
 				</Navbar.Brand>

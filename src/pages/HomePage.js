@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import HomePageMoto from "../components/motos/HomePageMoto";
 
 function HomePage() {
@@ -17,17 +18,20 @@ function HomePage() {
 					width: "100%",
 				}}
 			>
-				<h1
-					style={{
-						...textStyle,
-						fontSize: "75px",
-						fontWeight: "bold",
-						color: "#212529",
-						backgroundColor: "#fff",
-					}}
-				>
-					Start your journey
-				</h1>
+				<Link to="/login" style={{ textDecoration: "none" }}>
+					<h1
+						style={{
+							...textStyle,
+							fontSize: "75px",
+							fontWeight: "bold",
+							color: "#212529",
+							backgroundColor: "#fff",
+							cursor: "pointer",
+						}}
+					>
+						Start your journey
+					</h1>
+				</Link>
 				<h3 style={textStyle}>For new and experienced riders.</h3>
 				<h3 style={textStyle}>Search motorcycles for details.</h3>
 				<h3 style={textStyle}>Track your motorcycle journey.</h3>

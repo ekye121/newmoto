@@ -23,7 +23,7 @@ function MotoDetailsModal(props) {
 			<Modal.Body>
 				<Image
 					style={{ width: "100%", height: "auto" }}
-					src={data.articleImage.link}
+					src={`images.weserv.nl/?url=${props.data.articleImage.link}&w=2500&h=2500`}
 				/>
 				<SearchedMotoDetailsTable
 					engineAndTransmission={data.engineAndTransmission}

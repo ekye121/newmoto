@@ -9,12 +9,23 @@ function LoginForm(props) {
 			<Form onSubmit={props.submitHandler}>
 				<Form.Group id="email">
 					<Form.Label>Email</Form.Label>
-					<Form.Control type="email" required ref={props.emailRef} />
+					<Form.Control
+						type="email"
+						required
+						ref={props.emailRef}
+						style={{ borderRadius: "25px", paddingLeft: "15px" }}
+						placeholder="example@example.com"
+					/>
 				</Form.Group>
 				{props.type !== "Reset Password" ? (
 					<Form.Group id="password" className="mt-3">
 						<Form.Label>Password</Form.Label>
-						<Form.Control type="password" required ref={props.passwordRef} />
+						<Form.Control
+							type="password"
+							required
+							ref={props.passwordRef}
+							style={{ borderRadius: "25px", paddingLeft: "15px" }}
+						/>
 					</Form.Group>
 				) : null}
 				{props.type === "Sign Up" ? (
@@ -24,6 +35,7 @@ function LoginForm(props) {
 							type="password"
 							required
 							ref={props.passwordConfirmRef}
+							style={{ borderRadius: "25px", paddingLeft: "15px" }}
 						/>
 					</Form.Group>
 				) : null}
@@ -31,6 +43,8 @@ function LoginForm(props) {
 					className="w-100 text-center mt-3"
 					type="submit"
 					disabled={props.loading}
+					variant="secondary"
+					style={{ borderRadius: "25px" }}
 				>
 					{props.type}
 				</Button>

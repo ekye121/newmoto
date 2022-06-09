@@ -11,6 +11,7 @@ function LoginForm2(props) {
 					fontWeight: "bold",
 					cursor: "pointer",
 					textDecoration: "none",
+					color: "#6c757d",
 				}}
 			>
 				{props.buttonText}

@@ -47,7 +47,10 @@ function Login() {
 					submitHandler={submitHandler}
 				/>
 				<div className="text-center mt-3">
-					<Link to={"/forgot-password"} style={{ textDecoration: "none" }}>
+					<Link
+						to={"/forgot-password"}
+						style={{ textDecoration: "none", color: "#6c757d" }}
+					>
 						Forgot Password
 					</Link>
 				</div>

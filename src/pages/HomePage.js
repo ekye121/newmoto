@@ -1,10 +1,37 @@
 import HomePageMoto from "../components/motos/HomePageMoto";
 
 function HomePage() {
+	const textStyle = {
+		margin: "10px",
+		color: "#fff",
+		opacity: ".75",
+	};
+
 	return (
 		<>
-			{/* <div>Bike of the day</div> */}
-			{/* <div>#BOTD</div> */}
+			<div
+				className="d-flex flex-column justify-content-center align-items-center"
+				style={{
+					position: "absolute",
+					height: "100%",
+					width: "100%",
+				}}
+			>
+				<h1
+					style={{
+						...textStyle,
+						fontSize: "75px",
+						fontWeight: "bold",
+						color: "#212529",
+						backgroundColor: "#fff",
+					}}
+				>
+					Start your journey
+				</h1>
+				<h3 style={textStyle}>For new and experienced riders.</h3>
+				<h3 style={textStyle}>Search motorcycles for details.</h3>
+				<h3 style={textStyle}>Track your motorcycle journey.</h3>
+			</div>
 			<HomePageMoto />
 		</>
 	);

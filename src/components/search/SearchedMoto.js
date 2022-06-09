@@ -22,34 +22,6 @@ function SearchedMoto(props) {
 	}
 
 	useEffect(() => {
-		// function downloadImage() {
-		// 	function imageReceived() {
-		// 		let canvas = document.createElement("canvas");
-		// 		let context = canvas.getContext("2d");
-		// 		canvas.width = imageDL.width || "100%";
-		// 		canvas.height = imageDL.height || "100%";
-		// 		context.drawImage(imageDL, 0, 0);
-		// 		document.getElementById("imageBox").appendChild(canvas);
-		// 		console.log(`canvas ~~~>`, canvas);
-		// 		try {
-		// 			localStorage.setItem(
-		// 				"saved-image-example",
-		// 				canvas.toDataURL("image/png")
-		// 			);
-		// 		} catch (err) {
-		// 			console.log("Error: " + err);
-		// 		}
-		// 	}
-		// 	let imageURL = image.link;
-		// 	const imageDL = new Image();
-		// 	imageDL.crossOrigin = "Anonymous";
-		// 	imageDL.addEventListener("load", imageReceived, false);
-		// 	imageDL.src = imageURL;
-		// }
-		// downloadImage();
-	}, [image.link]);
-
-	useEffect(() => {
 		// toggle save button
 		setSaveButtonToggle(false);
 		if (savedContext.userSavedData?.motos) {

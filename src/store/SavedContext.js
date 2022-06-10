@@ -22,7 +22,6 @@ export function SavedContextProvider(props) {
 			setUserSavedData({});
 			setUserSavedMotos([]);
 			setUserSavedProfileData({});
-			setUser("");
 			try {
 				const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/users/${user}.json`;
 				const res = await fetch(url);
@@ -155,6 +154,9 @@ export function SavedContextProvider(props) {
 				},
 				body: JSON.stringify(profileData),
 			};
+			console.log(`user ~~~>`, user);
+			console.log(`profileData ~~~>`, profileData);
+			console.log(`type ~~~>`, type);
 			const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/users/${user}/profile/${type}.json`;
 			const res = await fetch(url, options);
 			const data = await res.json();

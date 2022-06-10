@@ -75,7 +75,7 @@ export function SavedContextProvider(props) {
 	function saveMotoHandler(data) {
 		// check if moto is already saved
 		let isSaved = false;
-		if (userSavedData.motos) {
+		if (userSavedData?.motos) {
 			for (const moto of userSavedData.motos) {
 				const motoID = moto.articleCompleteInfo.articleID;
 				const dataID = data.articleCompleteInfo.articleID;
@@ -110,7 +110,7 @@ export function SavedContextProvider(props) {
 	async function removeMotoDataDB(motoData) {
 		try {
 			const options = {
-				method: "PATCH",
+				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
 				},
@@ -154,9 +154,6 @@ export function SavedContextProvider(props) {
 				},
 				body: JSON.stringify(profileData),
 			};
-			console.log(`user ~~~>`, user);
-			console.log(`profileData ~~~>`, profileData);
-			console.log(`type ~~~>`, type);
 			const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/users/${user}/profile/${type}.json`;
 			const res = await fetch(url, options);
 			const data = await res.json();

@@ -50,7 +50,7 @@ function ProfileMilestones() {
 	}
 
 	return (
-		<Col>
+		<Col xs={12} sm={6}>
 			<CardProfile
 				maxWidth="100%"
 				width=""

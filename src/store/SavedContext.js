@@ -3,6 +3,7 @@ import { createContext, useState, useEffect, useContext } from "react";
 import AuthContext from "./AuthContext";
 
 const SavedContext = createContext({
+	user: "",
 	userSavedData: {},
 	userSavedMotos: [],
 	userSavedProfileData: {},
@@ -172,6 +173,7 @@ export function SavedContextProvider(props) {
 	}
 
 	const context = {
+		user,
 		userSavedData,
 		userSavedMotos,
 		userSavedProfileData,

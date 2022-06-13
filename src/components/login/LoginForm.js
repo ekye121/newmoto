@@ -14,6 +14,7 @@ function LoginForm(props) {
 						required
 						ref={props.emailRef}
 						style={{ borderRadius: "25px", paddingLeft: "15px" }}
+						placeholder="guest@guest.com"
 					/>
 				</Form.Group>
 				{props.type !== "Reset Password" ? (
@@ -24,6 +25,7 @@ function LoginForm(props) {
 							required
 							ref={props.passwordRef}
 							style={{ borderRadius: "25px", paddingLeft: "15px" }}
+							placeholder="guest1"
 						/>
 					</Form.Group>
 				) : null}

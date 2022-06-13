@@ -1,7 +1,19 @@
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 import HomePageMoto from "../components/motos/HomePageMoto";
+import AuthContext from "../store/AuthContext";
 
 function HomePage() {
+	const authContext = useContext(AuthContext);
+	const [user, setUser] = useState("");
+
+	useEffect(() => {
+		if (authContext.currUser) {
+			setUser(authContext.currUser);
+		}
+	}, [authContext.currUser]);
+
 	const textStyle = {
 		margin: "10px",
 		color: "#fff",
@@ -18,7 +30,10 @@ function HomePage() {
 					width: "100%",
 				}}
 			>
-				<Link to="/login" style={{ textDecoration: "none" }}>
+				<Link
+					to={user ? "/profile" : "/login"}
+					style={{ textDecoration: "none" }}
+				>
 					<h1
 						style={{
 							...textStyle,

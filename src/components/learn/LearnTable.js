@@ -13,7 +13,7 @@ function LearnTable(props) {
 				<tr>
 					<th style={{ fontSize: "20px" }}>{props.title}</th>
 					<th className="text-end" style={{ fontSize: "30px" }}>
-						+
+						{toggleTable ? "-" : "+"}
 					</th>
 				</tr>
 			</thead>

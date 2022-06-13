@@ -46,7 +46,7 @@ function SearchedMotoDetailsTable(props) {
 									{fixCamelCaseStr(detailType)}
 								</th>
 								<th className="text-end" style={{ fontSize: "30px" }}>
-									+
+									{toggleDetails[detailType] ? "-" : "+"}
 								</th>
 							</tr>
 						</thead>

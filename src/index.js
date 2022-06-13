@@ -8,6 +8,7 @@ import App from "./App";
 import { AuthContextProvider } from "./store/AuthContext";
 import { MotosContextProvider } from "./store/MotosContext";
 import { SavedContextProvider } from "./store/SavedContext";
+import ScrollToTop from "./components/routes/ScrollToTop";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,9 +16,11 @@ root.render(
 		<MotosContextProvider>
 			<SavedContextProvider>
 				<HashRouter>
-					{/* <React.StrictMode> */}
-					<App />
-					{/* </React.StrictMode> */}
+					<ScrollToTop>
+						{/* <React.StrictMode> */}
+						<App />
+						{/* </React.StrictMode> */}
+					</ScrollToTop>
 				</HashRouter>
 			</SavedContextProvider>
 		</MotosContextProvider>

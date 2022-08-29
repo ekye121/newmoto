@@ -22,7 +22,7 @@ function ProfilePage(props) {
 				<Logout />
 			</div>
 
-			<Container>
+			<Container className="mb-5">
 				<ProfileMilesRode />
 				<Row>
 					<ProfileNotes />

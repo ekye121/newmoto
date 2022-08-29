@@ -31,7 +31,10 @@ function MainNavigation() {
 						NEWMOTO
 					</Link>
 				</Navbar.Brand>
-				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+				<Navbar.Toggle
+					aria-controls="responsive-navbar-nav"
+					style={{ position: "relative", left: "25%" }}
+				/>
 				<div style={{ fontWeight: "bold" }}>
 					{authContext.currUser ? (
 						<LoggedInNavigation />

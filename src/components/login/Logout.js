@@ -20,10 +20,7 @@ function Logout() {
 	}
 
 	return (
-		<div
-			className="position-relative d-flex justify-content-end"
-			style={{ top: "10px", right: "10px" }}
-		>
+		<div>
 			<Button
 				variant="secondary"
 				onClick={logoutHandler}

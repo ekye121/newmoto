@@ -19,7 +19,7 @@ function DeleteMotoModal(props) {
 				className="d-flex justify-content-around"
 				style={{ fontWeight: "bolder" }}
 			>
-				Permanently Delete
+				Delete
 			</Modal.Header>
 			<Modal.Footer className="d-flex justify-content-around">
 				<Button

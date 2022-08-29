@@ -14,11 +14,15 @@ function ProfilePage(props) {
 
 	return (
 		<>
-			<Logout />
+			<div
+				className="d-flex justify-content-between align-items-center container"
+				style={{ margin: "30px auto" }}
+			>
+				<h3>{`Safe riding, ${savedContext.user.split("@")[0]}`}</h3>
+				<Logout />
+			</div>
+
 			<Container>
-				<h3 style={{ margin: "25px" }}>
-					{`Safe riding, ${savedContext.user.split("@")[0]}`}
-				</h3>
 				<ProfileMilesRode />
 				<Row>
 					<ProfileNotes />

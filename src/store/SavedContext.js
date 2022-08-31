@@ -44,7 +44,6 @@ export function SavedContextProvider(props) {
 				setUserSavedData(data);
 				setUserSavedMotos(data?.motos);
 				setUserSavedProfileData(data?.profile ?? profilePageData);
-				console.log(`data.profile ~~~>`, data.profile);
 				return data;
 			} catch (err) {
 				console.error(err);
@@ -182,9 +181,7 @@ export function SavedContextProvider(props) {
 	function saveProfileDataHandler({ idx, data, type }) {
 		let updatedData;
 		setUserSavedProfileData((prev) => {
-			console.log(`prev before update ~~~>`, prev[1].milesRodeLog);
 			prev[idx][type] = data;
-			console.log(`prev after ~~~>`, prev[1].milesRodeLog);
 			updatedData = prev;
 			return prev;
 		});

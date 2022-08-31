@@ -12,6 +12,7 @@ import {
 	getModelsByCategoryMakeAPI,
 	postModelsByCategoryMakeDB,
 } from "../components/api/ModelsByCategoryMakeAPI";
+import searchMoto from "../components/search/searchMoto.jpg";
 
 function SearchPage() {
 	const motosContext = useContext(MotosContext);
@@ -332,8 +333,35 @@ function SearchPage() {
 				loading={loading}
 			/>
 			<hr />
-			{modelSpecsData.length > 0 && (
+			{modelSpecsData.length > 0 ? (
 				<SearchedMoto data={modelSpecsData[0]} loadingMoto={loadingMoto} />
+			) : (
+				<div
+					style={{
+						minHeight: "50vh",
+						display: "flex",
+						flexDirection: "column",
+					}}
+				>
+					<img
+						src={searchMoto}
+						alt="motorcycle"
+						style={{
+							display: "block",
+							width: "50%",
+							minWidth: "350px",
+							margin: "auto",
+							opacity: ".25",
+							zIndex: "-1",
+						}}
+					/>
+					<div style={{ opacity: "0", pointerEvents: "none" }}>
+						<a href="https://www.freepik.com/free-vector/vintage-chopper-motorcycle-side-view-template_8084280.htm#query=adventure%20motorcycle&position=0&from_view=keyword">
+							Image by dgim-studio
+						</a>{" "}
+						on Freepik
+					</div>
+				</div>
 			)}
 		</div>
 	);

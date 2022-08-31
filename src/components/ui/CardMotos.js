@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { Button, Card } from "react-bootstrap";
 import MotoDetailsModal from "../saved/MotoDetailsModal";
 import SaveContext from "../../store/SavedContext";
-import DeleteMotoModal from "../saved/DeleteMotoModal";
+import DeleteConfirmModal from "../saved/DeleteConfirmModal";
 
 function CardMotos(props) {
 	const saveContext = useContext(SaveContext);
@@ -60,7 +60,7 @@ function CardMotos(props) {
 						>
 							Delete
 						</Button>
-						<DeleteMotoModal
+						<DeleteConfirmModal
 							show={deleteConfirmModal}
 							onHide={() => setDeleteConfirmModal(false)}
 							delete={deleteSavedMotoHandler}

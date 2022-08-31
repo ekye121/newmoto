@@ -1,27 +1,16 @@
-import React, { useState, useRef, useContext, useEffect } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { Row, Col, Button, Form, Table } from "react-bootstrap";
 
 import CardProfile from "../ui/CardProfile";
 import SavedContext from "../../store/SavedContext";
 
-function MilesRode() {
-	const savedContext = useContext(SavedContext);
-	const { userSavedProfileData: profileData, saveProfileDataHandler } =
-		savedContext;
-	const [milesRode, setMilesRode] = useState(profileData.milesRode || 0);
-	const [milesRodeLog, setMilesRodeLog] = useState(
-		profileData.milesRodeLog || []
-	);
+function MilesRode(props) {
+	const { saveProfileDataHandler } = useContext(SavedContext);
+	const [milesRode, setMilesRode] = useState(props.milesRode);
+	const [milesRodeLog, setMilesRodeLog] = useState(props.milesRodeLog);
 	const addMilesInputRef = useRef();
 
-	useEffect(() => {
-		if (profileData?.milesRode && profileData?.milesRodeLog.length) {
-			setMilesRode(profileData.milesRode);
-			setMilesRodeLog(profileData.milesRodeLog);
-		}
-	}, [profileData, milesRode, milesRodeLog]);
-
-	function addMilesRodeHandler(e) {
+	function formSubmitHandler(e) {
 		e.preventDefault();
 
 		// miles rode
@@ -35,22 +24,34 @@ function MilesRode() {
 				return prev;
 			});
 		}
-		updateMilesRode().then(() =>
-			saveProfileDataHandler(updatedMilesRode, "milesRode")
-		);
-
-		// miles rode log
-		const date = Date().split(" ").slice(0, 4).join(" ");
-		let updatedLog;
-		async function updateMilesRodeLog() {
-			setMilesRodeLog((prev) => {
-				updatedLog = [[date, num], ...prev];
-				return updatedLog;
+		updateMilesRode()
+			.then(() =>
+				// saveProfileDataHandler(updatedMilesRode, "milesRode")
+				saveProfileDataHandler({
+					idx: props.idx,
+					data: updatedMilesRode,
+					type: "milesRode",
+				})
+			)
+			.then(() => {
+				// miles rode log
+				const date = Date().split(" ").slice(0, 4).join(" ");
+				let updatedLog;
+				async function updateMilesRodeLog() {
+					setMilesRodeLog((prev) => {
+						updatedLog = [[date, num], ...prev];
+						return updatedLog;
+					});
+				}
+				updateMilesRodeLog().then(() =>
+					// saveProfileDataHandler(updatedLog, "milesRodeLog")
+					saveProfileDataHandler({
+						idx: props.idx,
+						data: updatedLog,
+						type: "milesRodeLog",
+					})
+				);
 			});
-		}
-		updateMilesRodeLog().then(() =>
-			saveProfileDataHandler(updatedLog, "milesRodeLog")
-		);
 	}
 
 	return (
@@ -59,7 +60,7 @@ function MilesRode() {
 				<CardProfile>
 					<h3>Total Miles Rode</h3>
 					<h3 style={{ fontWeight: "bold" }}>{milesRode}</h3>
-					<Form className="d-flex" onSubmit={addMilesRodeHandler}>
+					<Form className="d-flex" onSubmit={formSubmitHandler}>
 						<Form.Control
 							style={{ borderRadius: "15px", width: "120px" }}
 							placeholder="add miles..."
@@ -89,7 +90,7 @@ function MilesRode() {
 								</tr>
 							</thead>
 							<tbody>
-								{milesRodeLog.map(([date, num], i) => {
+								{milesRodeLog?.map(([date, num], i) => {
 									return (
 										<tr key={i}>
 											<td>{date}</td>

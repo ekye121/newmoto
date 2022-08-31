@@ -1,15 +1,10 @@
 import React, { useContext } from "react";
-import { Container, Row } from "react-bootstrap";
 
 import Logout from "../components/login/Logout";
-import ProfileJournal from "../components/profile/ProfileJournal";
-import ProfileMaintenance from "../components/profile/ProfileMaintenance";
-import ProfileMilesRode from "../components/profile/ProfileMilesRode";
-import ProfileMilestones from "../components/profile/ProfileMilestones";
-import ProfileNotes from "../components/profile/ProfileNotes";
 import SavedContext from "../store/SavedContext";
+import ProfileTabs from "../components//profile/ProfileTabs";
 
-function ProfilePage(props) {
+function ProfilePage() {
 	const savedContext = useContext(SavedContext);
 
 	return (
@@ -22,15 +17,7 @@ function ProfilePage(props) {
 				<Logout />
 			</div>
 
-			<Container className="mb-5">
-				<ProfileMilesRode />
-				<Row>
-					<ProfileNotes />
-					<ProfileMilestones />
-				</Row>
-				<ProfileMaintenance />
-				<ProfileJournal />
-			</Container>
+			<ProfileTabs />
 		</>
 	);
 }

@@ -1,4 +1,4 @@
-import { useState, useRef, useContext, useEffect } from "react";
+import { useState, useRef, useContext } from "react";
 import { Col, Form, Button, Row } from "react-bootstrap";
 
 import CardProfile from "../ui/CardProfile";
@@ -14,19 +14,13 @@ const defaultMilestones = [
 	["Sign up for Newmoto", true],
 ];
 
-function ProfileMilestones() {
-	const savedContext = useContext(SavedContext);
-	const { userSavedProfileData: profileData, saveProfileDataHandler } =
-		savedContext;
-	const [milestones, setMilestones] = useState(defaultMilestones);
+function ProfileMilestones(props) {
+	const { saveProfileDataHandler } = useContext(SavedContext);
+	const [milestones, setMilestones] = useState(
+		props.milestones.length ? props.milestones : defaultMilestones
+	);
 	const [milestoneFormCheck, setMilestoneFormCheck] = useState(false);
 	const milestoneInputRef = useRef();
-
-	useEffect(() => {
-		if (profileData.milestones) {
-			setMilestones(profileData.milestones);
-		}
-	}, [profileData.milestones, milestoneFormCheck]);
 
 	function addMilestoneHandler(e) {
 		e.preventDefault();
@@ -35,7 +29,11 @@ function ProfileMilestones() {
 		setMilestones((prev) => {
 			prev = [[currMilestone, false], ...prev];
 			milestoneInputRef.current.value = "";
-			saveProfileDataHandler(prev, "milestones");
+			saveProfileDataHandler({
+				idx: props.idx,
+				data: prev,
+				type: "milestones",
+			});
 			return prev;
 		});
 	}
@@ -44,7 +42,11 @@ function ProfileMilestones() {
 		setMilestones((prev) => {
 			prev[i][1] = !prev[i][1];
 			setMilestoneFormCheck(!milestoneFormCheck);
-			saveProfileDataHandler(prev, "milestones");
+			saveProfileDataHandler({
+				idx: props.idx,
+				data: prev,
+				type: "milestones",
+			});
 			return prev;
 		});
 	}

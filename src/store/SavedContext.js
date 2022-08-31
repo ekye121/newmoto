@@ -9,7 +9,21 @@ const SavedContext = createContext({
 	userSavedProfileData: {},
 	saveMotoHandler() {},
 	removeMotoHandler() {},
+	addProfileTabHandler() {},
+	deleteProfileTabHandler() {},
 });
+
+const profilePageData = {
+	0: {
+		name: "Moto 1",
+		milesRode: 0,
+		milesRodeLog: [],
+		notes: [],
+		milestones: [],
+		maintenance: [],
+		journal: "",
+	},
+};
 
 export function SavedContextProvider(props) {
 	const [userSavedData, setUserSavedData] = useState({});
@@ -29,7 +43,8 @@ export function SavedContextProvider(props) {
 				const data = await res.json();
 				setUserSavedData(data);
 				setUserSavedMotos(data?.motos);
-				setUserSavedProfileData(data?.profile ?? {});
+				setUserSavedProfileData(data?.profile ?? profilePageData);
+				console.log(`data.profile ~~~>`, data.profile);
 				return data;
 			} catch (err) {
 				console.error(err);
@@ -146,7 +161,7 @@ export function SavedContextProvider(props) {
 		setUserSavedMotos(newUserData.motos);
 	}
 
-	async function saveProfileDataDB(profileData, type) {
+	async function saveProfileDataDB(profileData) {
 		try {
 			const options = {
 				method: "PUT",
@@ -155,7 +170,7 @@ export function SavedContextProvider(props) {
 				},
 				body: JSON.stringify(profileData),
 			};
-			const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/users/${user}/profile/${type}.json`;
+			const url = `https://newmoto-3d5a9-default-rtdb.firebaseio.com/users/${user}/profile/.json`;
 			const res = await fetch(url, options);
 			const data = await res.json();
 			return data;
@@ -164,12 +179,53 @@ export function SavedContextProvider(props) {
 		}
 	}
 
-	function saveProfileDataHandler(data, type) {
+	function saveProfileDataHandler({ idx, data, type }) {
+		let updatedData;
 		setUserSavedProfileData((prev) => {
-			prev[type] = data;
+			console.log(`prev before update ~~~>`, prev[1].milesRodeLog);
+			prev[idx][type] = data;
+			console.log(`prev after ~~~>`, prev[1].milesRodeLog);
+			updatedData = prev;
 			return prev;
 		});
-		saveProfileDataDB(data, type);
+		saveProfileDataDB(updatedData);
+	}
+
+	function addProfileTabHandler(name) {
+		const newTab = {
+			name,
+			milesRode: 0,
+			milesRodeLog: [],
+			notes: [],
+			milestones: [],
+			maintenance: [],
+			journal: "",
+		};
+		let updatedData;
+		setUserSavedProfileData((prev) => {
+			let length = Object.keys(prev).length;
+			prev = { ...prev, [length]: newTab };
+			updatedData = prev;
+			return prev;
+		});
+		saveProfileDataDB(updatedData);
+	}
+
+	function deleteProfileTabHandler(idx) {
+		const newObjData = {};
+		setUserSavedProfileData((prev) => {
+			let counter = 0;
+			Object.keys(prev).forEach((key) => {
+				if (idx !== key) {
+					newObjData[counter] = prev[key];
+					counter++;
+				} else {
+					delete prev[key];
+				}
+			});
+			return newObjData;
+		});
+		saveProfileDataDB(newObjData);
 	}
 
 	const context = {
@@ -180,6 +236,8 @@ export function SavedContextProvider(props) {
 		saveMotoHandler,
 		removeMotoHandler,
 		saveProfileDataHandler,
+		addProfileTabHandler,
+		deleteProfileTabHandler,
 	};
 
 	return (

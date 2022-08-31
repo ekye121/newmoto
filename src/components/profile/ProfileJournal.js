@@ -1,24 +1,20 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Row, Col, Form } from "react-bootstrap";
 
 import CardProfile from "../ui/CardProfile";
 import SavedContext from "../../store/SavedContext";
 
-function ProfileJournal() {
-	const savedContext = useContext(SavedContext);
-	const { userSavedProfileData: profileData, saveProfileDataHandler } =
-		savedContext;
-	const [text, setText] = useState("");
-
-	useEffect(() => {
-		if (profileData.journal) {
-			setText(profileData.journal);
-		}
-	}, [profileData.journal]);
+function ProfileJournal(props) {
+	const { saveProfileDataHandler } = useContext(SavedContext);
+	const [text, setText] = useState(props.journal);
 
 	function journalTextOnChange(e) {
 		setText(e.target.value);
-		saveProfileDataHandler(e.target.value, "journal");
+		saveProfileDataHandler({
+			idx: props.idx,
+			data: e.target.value,
+			type: "journal",
+		});
 	}
 
 	return (

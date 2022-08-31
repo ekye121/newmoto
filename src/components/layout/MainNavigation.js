@@ -11,15 +11,6 @@ function MainNavigation() {
 	const authContext = useContext(AuthContext);
 
 	return (
-		// <header className={classes.header}>
-		// 	<Link to="/" className={classes.logo}>
-		// 		NEWMOTO
-		// 	</Link>
-
-		// 	<DefaultNavigation />
-		// 	<LoggedInNavigation />
-		// </header>
-
 		<Navbar bg="dark" expand="lg" variant="dark">
 			<Container>
 				<Navbar.Brand>
@@ -31,10 +22,7 @@ function MainNavigation() {
 						NEWMOTO
 					</Link>
 				</Navbar.Brand>
-				<Navbar.Toggle
-					aria-controls="responsive-navbar-nav"
-					style={{ position: "relative", left: "25%" }}
-				/>
+				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<div style={{ fontWeight: "bold" }}>
 					{authContext.currUser ? (
 						<LoggedInNavigation />

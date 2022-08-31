@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
 
-function DeleteMotoModal(props) {
-	function deleteMoto() {
+function DeleteConfirmModal(props) {
+	function deleteItem() {
 		props.onHide();
 		props.delete();
 	}
@@ -19,7 +19,9 @@ function DeleteMotoModal(props) {
 				className="d-flex justify-content-around"
 				style={{ fontWeight: "bolder" }}
 			>
-				Delete
+				{props.type === "tab"
+					? "All data will be erased. Continue?"
+					: "Delete moto?"}
 			</Modal.Header>
 			<Modal.Footer className="d-flex justify-content-around">
 				<Button
@@ -32,7 +34,7 @@ function DeleteMotoModal(props) {
 				<Button
 					style={{ borderRadius: "25px" }}
 					variant="secondary"
-					onClick={deleteMoto}
+					onClick={deleteItem}
 				>
 					Yes
 				</Button>
@@ -41,4 +43,4 @@ function DeleteMotoModal(props) {
 	);
 }
 
-export default DeleteMotoModal;
+export default DeleteConfirmModal;

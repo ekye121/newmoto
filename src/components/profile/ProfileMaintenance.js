@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext, useEffect } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { Row, Col, Button, Form, Table } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 
@@ -6,19 +6,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import CardProfile from "../ui/CardProfile";
 import SavedContext from "../../store/SavedContext";
 
-function MilesRode() {
-	const savedContext = useContext(SavedContext);
-	const { userSavedProfileData: profileData, saveProfileDataHandler } =
-		savedContext;
-	const [maintenanceLog, setMaintenanceLog] = useState([]);
+function MilesRode(props) {
+	const { saveProfileDataHandler } = useContext(SavedContext);
+	const [maintenanceLog, setMaintenanceLog] = useState(props.maintenance);
 	const [datePick, setDatePick] = useState(new Date());
 	const maintenanceInputRef = useRef();
-
-	useEffect(() => {
-		if (profileData.maintenanceLog) {
-			setMaintenanceLog(profileData.maintenanceLog);
-		}
-	}, [profileData.maintenanceLog]);
 
 	function addMaintenanceHandler(e) {
 		e.preventDefault();
@@ -28,7 +20,11 @@ function MilesRode() {
 		setMaintenanceLog((prev) => {
 			prev = [[date, text], ...prev];
 			maintenanceInputRef.current.value = "";
-			saveProfileDataHandler(prev, "maintenanceLog");
+			saveProfileDataHandler({
+				idx: props.idx,
+				data: prev,
+				type: "maintenance",
+			});
 			return prev;
 		});
 	}

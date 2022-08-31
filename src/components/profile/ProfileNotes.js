@@ -1,21 +1,13 @@
-import { useState, useRef, useContext, useEffect } from "react";
+import { useState, useRef, useContext } from "react";
 import { Col, Form, Button, CloseButton, Row } from "react-bootstrap";
 
 import CardProfile from "../ui/CardProfile";
 import SavedContext from "../../store/SavedContext";
 
-function ProfileNotes() {
-	const savedContext = useContext(SavedContext);
-	const { userSavedProfileData: profileData, saveProfileDataHandler } =
-		savedContext;
-	const [notes, setNotes] = useState([]);
+function ProfileNotes(props) {
+	const { saveProfileDataHandler } = useContext(SavedContext);
+	const [notes, setNotes] = useState(props.notes || []);
 	const noteRef = useRef();
-
-	useEffect(() => {
-		if (profileData.notes) {
-			setNotes(profileData.notes);
-		}
-	}, [profileData.notes]);
 
 	function addNoteHandler(e) {
 		e.preventDefault();
@@ -24,7 +16,7 @@ function ProfileNotes() {
 		setNotes((prev) => {
 			prev = [currNote, ...prev];
 			noteRef.current.value = "";
-			saveProfileDataHandler(prev, "notes");
+			saveProfileDataHandler({ idx: props.idx, data: prev, type: "notes" });
 			return prev;
 		});
 	}
@@ -32,7 +24,7 @@ function ProfileNotes() {
 	function deleteNoteHandler(i) {
 		setNotes((prev) => {
 			prev = prev.filter((_, idx) => i !== idx);
-			saveProfileDataHandler(prev, "notes");
+			saveProfileDataHandler({ idx: props.idx, data: prev, type: "notes" });
 			return prev;
 		});
 	}

@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 
 function LoginForm(props) {
+	const [email, setEmail] = useState("guest@guest.com");
+	const [password, setPassword] = useState("guest1");
+	console.log(`props ~~~>`, props);
 	return (
 		<div>
 			<h2 className="text-center mb-4 mt-2">{props.type}</h2>
@@ -14,7 +18,9 @@ function LoginForm(props) {
 						required
 						ref={props.emailRef}
 						style={{ borderRadius: "25px", paddingLeft: "15px" }}
-						placeholder="guest@guest.com"
+						placeholder={props.type === "Log In" ? "guest@guest.com" : ""}
+						value={props.type === "Log In" ? email : ""}
+						onChange={(e) => setEmail(e.target.value)}
 					/>
 				</Form.Group>
 				{props.type !== "Reset Password" ? (
@@ -25,7 +31,9 @@ function LoginForm(props) {
 							required
 							ref={props.passwordRef}
 							style={{ borderRadius: "25px", paddingLeft: "15px" }}
-							placeholder="guest1"
+							placeholder={props.type === "Log In" ? "guest1" : ""}
+							value={props.type === "Log In" ? password : ""}
+							onChange={(e) => setPassword(e.target.value)}
 						/>
 					</Form.Group>
 				) : null}
@@ -41,7 +49,7 @@ function LoginForm(props) {
 					</Form.Group>
 				) : null}
 				<Button
-					className="w-100 text-center mt-3"
+					className="w-100 text-center mt-3 log-in-button"
 					type="submit"
 					disabled={props.loading}
 					variant="secondary"

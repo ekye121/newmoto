@@ -4,7 +4,7 @@ import { Form, Button, Alert } from "react-bootstrap";
 function LoginForm(props) {
 	const [email, setEmail] = useState("guest@guest.com");
 	const [password, setPassword] = useState("guest1");
-	console.log(`props ~~~>`, props);
+
 	return (
 		<div>
 			<h2 className="text-center mb-4 mt-2">{props.type}</h2>

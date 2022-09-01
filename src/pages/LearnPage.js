@@ -34,7 +34,15 @@ const safetyData = [
 
 function LearnPage() {
 	return (
-		<Container style={{ marginTop: "40px", marginBottom: "70px" }}>
+		<Container
+			style={{
+				marginTop: "40px",
+				marginBottom: "70px",
+				background: "#fff",
+				height: "100%",
+				minHeight: "80vh",
+			}}
+		>
 			<h3>Learn</h3>
 			<LearnTable title="Safety" data={safetyData} />
 			<LearnTable title="Pre-Ride Inspection" data={preRideData} />

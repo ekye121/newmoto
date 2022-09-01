@@ -8,7 +8,7 @@ function ProfilePage() {
 	const savedContext = useContext(SavedContext);
 
 	return (
-		<>
+		<div style={{ background: "#fff" }}>
 			<div
 				className="d-flex justify-content-between align-items-center container"
 				style={{ margin: "30px auto" }}
@@ -18,7 +18,7 @@ function ProfilePage() {
 			</div>
 
 			<ProfileTabs />
-		</>
+		</div>
 	);
 }
 

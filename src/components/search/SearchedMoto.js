@@ -43,7 +43,11 @@ function SearchedMoto(props) {
 			) : (
 				<Container
 					className="w-100 h-100"
-					style={{ marginBottom: "120px", marginTop: "40px" }}
+					style={{
+						marginBottom: "120px",
+						marginTop: "40px",
+						background: "#fff",
+					}}
 				>
 					<div
 						className="d-inline-flex w-100 justify-content-between"

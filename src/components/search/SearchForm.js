@@ -6,7 +6,13 @@ import SearchIcon from "./search-icon.png";
 
 function SearchForm(props) {
 	return (
-		<div style={{ background: "rgb(232 232 232)" }}>
+		<div
+			style={{
+				background: "rgb(232 232 232)",
+				filter: "drop-shadow(1px 1px 5px #777)",
+				// boxShadow: "0px 4px 8px #777",
+			}}
+		>
 			{props.modelErrorMsg && (
 				<Alert variant="danger" className="text-center">
 					{props.modelErrorMsg}
@@ -19,7 +25,7 @@ function SearchForm(props) {
 			) : (
 				<Container
 					style={{
-						marginTop: "40px",
+						// marginTop: "40px",
 						marginBottom: "40px",
 						paddingBottom: "15px",
 						border: "2px solid transparent",

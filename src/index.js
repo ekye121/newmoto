@@ -17,9 +17,9 @@ root.render(
 			<SavedContextProvider>
 				<HashRouter>
 					<ScrollToTop>
-						{/* <React.StrictMode> */}
-						<App />
-						{/* </React.StrictMode> */}
+						<React.StrictMode>
+							<App />
+						</React.StrictMode>
 					</ScrollToTop>
 				</HashRouter>
 			</SavedContextProvider>

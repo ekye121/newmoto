@@ -8,6 +8,8 @@ function Footer() {
 				backgroundColor: "#212529",
 				height: "300px",
 				width: "100%",
+				position: "relative",
+				bottom: "0px",
 			}}
 		>
 			<div

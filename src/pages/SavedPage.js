@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { Container } from "react-bootstrap";
-import CardMotos from "../components/ui/CardMotos";
 
+import CardMotos from "../components/ui/CardMotos";
 import SavedContext from "../store/SavedContext";
+import MotoBG from "../components/ui/MotoBG";
 
 function SavedPage() {
 	const savedContext = useContext(SavedContext);

@@ -36,7 +36,7 @@ function Login() {
 	}
 
 	return (
-		<div>
+		<div style={{ marginTop: "40px" }}>
 			<CardLogin>
 				<LoginForm
 					type="Log In"

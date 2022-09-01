@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { Container } from "react-bootstrap";
 
 import CardMotos from "../components/ui/CardMotos";
+import SwipeArrow from "../components/ui/SwipeArrow";
 import SavedContext from "../store/SavedContext";
-import MotoBG from "../components/ui/MotoBG";
 
 function SavedPage() {
 	const savedContext = useContext(SavedContext);
@@ -18,7 +18,14 @@ function SavedPage() {
 		<div>
 			<Container style={{ marginTop: "40px" }}>
 				<h3>Motos</h3>
-				<div id="savedMotos" style={{ height: "530px", overflow: "auto" }}>
+				<div
+					id="savedMotos"
+					style={{
+						height: "530px",
+						overflow: "auto",
+						marginTop: "20px",
+					}}
+				>
 					<div className="d-flex">
 						{savedContext.userSavedMotos?.length ? (
 							savedContext.userSavedMotos.map((moto) => {
@@ -30,10 +37,19 @@ function SavedPage() {
 								);
 							})
 						) : (
-							<div>Nothing saved...</div>
+							<div
+								style={{
+									fontSize: "20px",
+									fontWeight: "bold",
+									color: "#6c757d",
+								}}
+							>
+								Nothing saved...
+							</div>
 						)}
 					</div>
 				</div>
+				{savedContext.userSavedMotos?.length > 1 && <SwipeArrow />}
 			</Container>
 		</div>
 	);

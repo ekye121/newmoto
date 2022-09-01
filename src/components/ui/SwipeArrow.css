@@ -1,0 +1,22 @@
+.swipe-arrow-container {
+	width: 100%;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.swipe-arrow {
+	position: relative;
+	top: -28px;
+	width: 40px;
+	opacity: 0.2;
+	z-index: -1;
+	pointer-events: none;
+}
+
+@media screen and (max-width: 500px) {
+	.swipe-arrow-container {
+		display: flex;
+	}
+}

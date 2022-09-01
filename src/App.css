@@ -16,3 +16,9 @@
 .App-link {
 	color: #61dafb;
 }
+
+@media screen and (max-width: 450px) {
+	main {
+		min-height: 82vh !important;
+	}
+}

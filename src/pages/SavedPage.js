@@ -15,43 +15,44 @@ function SavedPage() {
 	// );
 
 	return (
-		<div>
-			<Container style={{ marginTop: "40px" }}>
-				<h3>Motos</h3>
-				<div
-					id="savedMotos"
-					style={{
-						height: "530px",
-						overflow: "auto",
-						marginTop: "20px",
-					}}
-				>
-					<div className="d-flex">
-						{savedContext.userSavedMotos?.length ? (
-							savedContext.userSavedMotos.map((moto) => {
-								return (
-									<CardMotos
-										key={moto.articleCompleteInfo.articleID}
-										data={moto}
-									/>
-								);
-							})
-						) : (
-							<div
-								style={{
-									fontSize: "20px",
-									fontWeight: "bold",
-									color: "#6c757d",
-								}}
-							>
-								Nothing saved...
-							</div>
-						)}
-					</div>
+		<Container
+			style={{ height: "91vh", display: "flex", flexDirection: "column" }}
+		>
+			<h3 style={{ marginTop: "40px" }}>Motos</h3>
+			<div
+				id="savedMotos"
+				style={{
+					height: "530px",
+					overflow: "auto",
+					marginTop: "auto",
+					marginBottom: "auto",
+				}}
+			>
+				<div className="d-flex">
+					{savedContext.userSavedMotos?.length ? (
+						savedContext.userSavedMotos.map((moto) => {
+							return (
+								<CardMotos
+									key={moto.articleCompleteInfo.articleID}
+									data={moto}
+								/>
+							);
+						})
+					) : (
+						<div
+							style={{
+								fontSize: "20px",
+								fontWeight: "bold",
+								color: "#6c757d",
+							}}
+						>
+							Nothing saved...
+						</div>
+					)}
 				</div>
-				{savedContext.userSavedMotos?.length > 1 && <SwipeArrow />}
-			</Container>
-		</div>
+			</div>
+			{savedContext.userSavedMotos?.length > 1 && <SwipeArrow />}
+		</Container>
 	);
 }
 

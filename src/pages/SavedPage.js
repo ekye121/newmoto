@@ -15,22 +15,20 @@ function SavedPage() {
 	// );
 
 	return (
-		<Container
-			style={{ height: "91vh", display: "flex", flexDirection: "column" }}
-		>
+		<Container style={{ height: "91vh" }}>
 			<h3 style={{ margin: "40px 0" }}>Motos</h3>
 			<div
 				id="savedMotos"
 				style={{
-					height: "530px",
-					overflow: "auto",
-					marginTop: "auto",
-					marginBottom: "auto",
+					height: "calc(91vh - 80px)",
+					display: "flex",
+					flexDirection: "column",
+					justifyContent: "center",
 					position: "relative",
 					top: "-50px",
 				}}
 			>
-				<div className="d-flex">
+				<div className="d-flex" style={{ height: "530px", overflow: "auto" }}>
 					{savedContext.userSavedMotos?.length ? (
 						savedContext.userSavedMotos.map((moto) => {
 							return (

@@ -36,7 +36,6 @@ function LoginForm(props) {
 							ref={props.passwordRef}
 							style={{ borderRadius: "25px", paddingLeft: "15px" }}
 							placeholder={props.type === "Log In" ? "guest1" : ""}
-							// value={props.type === "Log In" ? password : ""}
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 						/>

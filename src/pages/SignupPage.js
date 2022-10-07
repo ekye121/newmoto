@@ -52,7 +52,7 @@ function Signup() {
 			setLoading(true);
 			await authContext.signup(email, password);
 			addUserToDB(email.split(".")[0]);
-			navigate("/"); // navigate(-1) goes to prev page.
+			navigate("/profile"); // navigate(-1) goes to prev page.
 			emailRef.current.value = "";
 			passwordRef.current.value = "";
 			passwordConfirmRef.current.value = "";

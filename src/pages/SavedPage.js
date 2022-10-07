@@ -18,7 +18,7 @@ function SavedPage() {
 		<Container
 			style={{ height: "91vh", display: "flex", flexDirection: "column" }}
 		>
-			<h3 style={{ marginTop: "40px" }}>Motos</h3>
+			<h3 style={{ margin: "40px 0" }}>Motos</h3>
 			<div
 				id="savedMotos"
 				style={{
@@ -26,6 +26,8 @@ function SavedPage() {
 					overflow: "auto",
 					marginTop: "auto",
 					marginBottom: "auto",
+					position: "relative",
+					top: "-50px",
 				}}
 			>
 				<div className="d-flex">

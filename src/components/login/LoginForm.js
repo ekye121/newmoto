@@ -2,8 +2,12 @@ import { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 
 function LoginForm(props) {
-	const [email, setEmail] = useState("guest@guest.com");
-	const [password, setPassword] = useState("guest1");
+	const [email, setEmail] = useState(
+		props.type === "Log In" ? "guest@guest.com" : ""
+	);
+	const [password, setPassword] = useState(
+		props.type === "Log In" ? "guest1" : ""
+	);
 
 	return (
 		<div>
@@ -19,7 +23,7 @@ function LoginForm(props) {
 						ref={props.emailRef}
 						style={{ borderRadius: "25px", paddingLeft: "15px" }}
 						placeholder={props.type === "Log In" ? "guest@guest.com" : ""}
-						value={props.type === "Log In" ? email : ""}
+						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 					/>
 				</Form.Group>
@@ -32,7 +36,8 @@ function LoginForm(props) {
 							ref={props.passwordRef}
 							style={{ borderRadius: "25px", paddingLeft: "15px" }}
 							placeholder={props.type === "Log In" ? "guest1" : ""}
-							value={props.type === "Log In" ? password : ""}
+							// value={props.type === "Log In" ? password : ""}
+							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 					</Form.Group>

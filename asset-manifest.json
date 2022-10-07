@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/newmoto/static/css/main.d0b44032.css",
-    "main.js": "/newmoto/static/js/main.8cd8a5b7.js",
+    "main.js": "/newmoto/static/js/main.90519dec.js",
     "static/media/harley-pic.JPG": "/newmoto/static/media/harley-pic.dbeebe574d962e5bac40.JPG",
     "static/media/motoBG.jpg": "/newmoto/static/media/motoBG.8d062532da6088510353.jpg",
     "index.html": "/newmoto/index.html",
     "main.d0b44032.css.map": "/newmoto/static/css/main.d0b44032.css.map",
-    "main.8cd8a5b7.js.map": "/newmoto/static/js/main.8cd8a5b7.js.map"
+    "main.90519dec.js.map": "/newmoto/static/js/main.90519dec.js.map"
   },
   "entrypoints": [
     "static/css/main.d0b44032.css",
-    "static/js/main.8cd8a5b7.js"
+    "static/js/main.90519dec.js"
   ]
 }

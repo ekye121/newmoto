@@ -20,17 +20,33 @@ function ProfileAddTab({ changeTabNameHandler }) {
 		setTabKey(userSavedProfileData["0"]?.name ?? "");
 	}, [userSavedProfileData]);
 
+	function isValidInput(val) {
+		if (val.trim().length > 0) {
+			return true;
+		}
+		return false;
+	}
+
 	function addNewTabHandler(e) {
 		e.preventDefault();
+
 		setError("");
 
-		if (tabNames.indexOf(addNewVal.current.value.toString()) > -1) {
+		const value = addNewVal.current.value.toString();
+
+		if (tabNames.indexOf(value) > -1) {
 			setError("Name already in use.");
 			addNewVal.current.value = "";
 			return;
 		}
 
-		addProfileTabHandler(addNewVal.current.value);
+		if (!isValidInput(value)) {
+			setError("Add a valid input.");
+			addNewVal.current.value = "";
+			return;
+		}
+
+		addProfileTabHandler(value);
 		addNewVal.current.value = "";
 	}
 
@@ -41,6 +57,12 @@ function ProfileAddTab({ changeTabNameHandler }) {
 
 		if (tabNames.indexOf(updatedName) > -1) {
 			setError("Name already in use.");
+			updateNameVal.current.value = "";
+			return;
+		}
+
+		if (!isValidInput(updatedName)) {
+			setError("Add a valid input.");
 			updateNameVal.current.value = "";
 			return;
 		}

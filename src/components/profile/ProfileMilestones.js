@@ -40,8 +40,9 @@ function ProfileMilestones(props) {
 
 	function onFormCheckHandler(i) {
 		setMilestones((prev) => {
+			console.log(`prev ~~~>`, prev, i);
 			prev[i][1] = !prev[i][1];
-			setMilestoneFormCheck(!milestoneFormCheck);
+			// setMilestoneFormCheck(!milestoneFormCheck);
 			saveProfileDataHandler({
 				idx: props.idx,
 				data: prev,
@@ -70,13 +71,14 @@ function ProfileMilestones(props) {
 				>
 					<Form>
 						{milestones?.map(([milestone, checked], i) => {
+							console.log(milestone, checked);
 							return (
 								<div className="d-flex mt-3" key={i}>
 									<Form.Check
 										type="checkbox"
 										label={milestone}
-										checked={checked}
-										onChange={() => onFormCheckHandler(i)}
+										defaultChecked={checked}
+										onClick={() => onFormCheckHandler(i)}
 									/>
 								</div>
 							);

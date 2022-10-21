@@ -185,6 +185,7 @@ function SearchPage() {
 			setDisableModelItem(true);
 		} else {
 			setModelDropDownMenu(true);
+			setDisableModelItem(false);
 		}
 	}
 

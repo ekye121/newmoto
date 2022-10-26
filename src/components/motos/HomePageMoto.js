@@ -1,4 +1,4 @@
-import harleyPic from "./harley-pic.JPG";
+import harleyPic from "./harley-pic.JPG-XR";
 
 function HomePageMoto() {
 	return (

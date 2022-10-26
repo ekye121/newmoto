@@ -1,15 +1,41 @@
 {
   "files": {
-    "main.css": "/newmoto/static/css/main.9a267eba.css",
-    "main.js": "/newmoto/static/js/main.3a4f016d.js",
-    "static/media/harley-pic.JPG": "/newmoto/static/media/harley-pic.dbeebe574d962e5bac40.JPG",
+    "main.css": "/newmoto/static/css/main.9358dc00.css",
+    "main.js": "/newmoto/static/js/main.7ca13d4a.js",
+    "static/js/855.8eccf7f2.chunk.js": "/newmoto/static/js/855.8eccf7f2.chunk.js",
+    "static/js/263.785089ef.chunk.js": "/newmoto/static/js/263.785089ef.chunk.js",
+    "static/css/580.eea00195.chunk.css": "/newmoto/static/css/580.eea00195.chunk.css",
+    "static/js/580.68f2f940.chunk.js": "/newmoto/static/js/580.68f2f940.chunk.js",
+    "static/js/588.bd55e895.chunk.js": "/newmoto/static/js/588.bd55e895.chunk.js",
+    "static/js/17.4c1c3f99.chunk.js": "/newmoto/static/js/17.4c1c3f99.chunk.js",
+    "static/js/277.174d9750.chunk.js": "/newmoto/static/js/277.174d9750.chunk.js",
+    "static/js/120.cbaaad39.chunk.js": "/newmoto/static/js/120.cbaaad39.chunk.js",
+    "static/js/961.d7915573.chunk.js": "/newmoto/static/js/961.d7915573.chunk.js",
+    "static/js/207.7d07684e.chunk.js": "/newmoto/static/js/207.7d07684e.chunk.js",
+    "static/js/315.420d7a41.chunk.js": "/newmoto/static/js/315.420d7a41.chunk.js",
+    "static/css/462.e6a8544d.chunk.css": "/newmoto/static/css/462.e6a8544d.chunk.css",
+    "static/js/462.661dc667.chunk.js": "/newmoto/static/js/462.661dc667.chunk.js",
+    "static/media/harley-pic.JPG-XR": "/newmoto/static/media/harley-pic.dbeebe574d962e5bac40.JPG-XR",
     "static/media/motoBG.jpg": "/newmoto/static/media/motoBG.8d062532da6088510353.jpg",
     "index.html": "/newmoto/index.html",
-    "main.9a267eba.css.map": "/newmoto/static/css/main.9a267eba.css.map",
-    "main.3a4f016d.js.map": "/newmoto/static/js/main.3a4f016d.js.map"
+    "main.9358dc00.css.map": "/newmoto/static/css/main.9358dc00.css.map",
+    "main.7ca13d4a.js.map": "/newmoto/static/js/main.7ca13d4a.js.map",
+    "855.8eccf7f2.chunk.js.map": "/newmoto/static/js/855.8eccf7f2.chunk.js.map",
+    "263.785089ef.chunk.js.map": "/newmoto/static/js/263.785089ef.chunk.js.map",
+    "580.eea00195.chunk.css.map": "/newmoto/static/css/580.eea00195.chunk.css.map",
+    "580.68f2f940.chunk.js.map": "/newmoto/static/js/580.68f2f940.chunk.js.map",
+    "588.bd55e895.chunk.js.map": "/newmoto/static/js/588.bd55e895.chunk.js.map",
+    "17.4c1c3f99.chunk.js.map": "/newmoto/static/js/17.4c1c3f99.chunk.js.map",
+    "277.174d9750.chunk.js.map": "/newmoto/static/js/277.174d9750.chunk.js.map",
+    "120.cbaaad39.chunk.js.map": "/newmoto/static/js/120.cbaaad39.chunk.js.map",
+    "961.d7915573.chunk.js.map": "/newmoto/static/js/961.d7915573.chunk.js.map",
+    "207.7d07684e.chunk.js.map": "/newmoto/static/js/207.7d07684e.chunk.js.map",
+    "315.420d7a41.chunk.js.map": "/newmoto/static/js/315.420d7a41.chunk.js.map",
+    "462.e6a8544d.chunk.css.map": "/newmoto/static/css/462.e6a8544d.chunk.css.map",
+    "462.661dc667.chunk.js.map": "/newmoto/static/js/462.661dc667.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9a267eba.css",
-    "static/js/main.3a4f016d.js"
+    "static/css/main.9358dc00.css",
+    "static/js/main.7ca13d4a.js"
   ]
 }
